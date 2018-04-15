@@ -1,3 +1,3 @@
-export default () => (error, req, res, next) => {
+module.exports =  () => (error, req, res, next) => {
   res.error(error);
 };

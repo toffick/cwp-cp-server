@@ -3,7 +3,6 @@ const Sequelize = require('sequelize');
 const context = require('../dbContext');
 const errors = require('../helpers/errors.helper');
 const apiController = require('../controllers/api');
-const schemas = require('../schemas');
 
 module.exports = () => {
     const container = createContainer();
@@ -22,7 +21,6 @@ module.exports = () => {
 
     container.register({
         apiController: asFunction(apiController).singleton(),
-        schemas: asFunction(schemas)
     });
 
     container.register({
