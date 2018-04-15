@@ -18,23 +18,23 @@
   "homepage": "https://github.com/toffick/cwp-cp-server#readme",
   "dependencies": {
     "awilix": "^3.0.7",
+    "babel": "^6.23.0",
     "bcryptjs": "^2.4.3",
+    "config": "^1.30.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "joi": "^13.1.2",
     "jsonwebtoken": "^8.2.1",
     "moment": "^2.22.1",
     "morgan": "^1.9.0",
-    "sequelize": "^4.37.6",
     "mysql2": "^1.5.3",
-    "winston": "^2.4.1",
-    "cookie-parser": "^1.4.3",
+    "passport": "^0.4.0",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
-    "joi": "^13.1.2",
-    "passport": "^0.4.0",
-    "config": "^1.30.0"
+    "sequelize": "^4.37.6",
+    "winston": "^2.4.1"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
     "mocha": "^5.1.0",
     "sinon": "^4.5.0"
   }
