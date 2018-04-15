@@ -1,13 +1,13 @@
-const {users} = require('../models');
+const {users} = require('./models');
+const config = require('config');
 
 module.exports = ({Sequelize}) => {
     const sequelize = new Sequelize(config.db.name, config.db.user, config.db.password, config.db.options);
 
-    const User = user(Sequelize, sequelize);
+    const Users = users(Sequelize, sequelize);
 
     return {
-        Team,
-        User,
+        Users,
         sequelize,
         Sequelize
     };

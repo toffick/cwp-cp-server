@@ -1,15 +1,16 @@
 const {createContainer, asClass, asValue, asFunction, Lifetime} = require('awilix');
 const Sequelize = require('sequelize');
-const context = require('../dbContext');
+const context = require('../db');
 const errors = require('../helpers/errors.helper');
 const apiController = require('../controllers/api');
+const logger = require('winston');
 
 module.exports = () => {
     const container = createContainer();
 
     container.loadModules([
         ['services/*.js', {register: asClass}],
-        ['controllers/*.js', {register: asClass}],
+        ['controllers/routes/*.js', {register: asClass}],
         ['global-controllers/*.js', {register: asFunction}],
         ['schemas/*.js', {register: asFunction}]
     ], {
@@ -25,6 +26,7 @@ module.exports = () => {
 
     container.register({
         errors: asValue(errors),
+        logger: asValue(logger),
         Sequelize: asValue(Sequelize),
         context: asFunction(context)
     });

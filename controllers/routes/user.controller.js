@@ -1,12 +1,11 @@
 const CrudController = require('./crud.controller');
 
  class UserController extends CrudController {
-  constructor ({userService, cacheService}) {
-    super(userService, cacheService);
+  constructor ({userService}) {
+    super(userService);
 
     this.registerRoutes();
   }
-
 };
 
  module.exports = UserController;

@@ -1,8 +1,14 @@
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
-const container = require('./loader');
+const loader = require('./loader');
 const config = require('config');
+const app =require('./AppManager');
+const tempDataToDb = require('./helpers/tempDataToDb.helper');
 
-console.log(config.db.name);
-console.log(process.env.NODE_ENV);
+(async function () {
+    const container = loader();
+    const server = await app(container);
 
-// TODO make server start
+    await tempDataToDb(container.resolve('context'));
+
+    server.listen(config.app.port, () => container.resolve('logger').log('Server running'));
+})();
