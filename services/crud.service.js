@@ -50,9 +50,7 @@ class CrudService {
     }
 
     async readOne(where) {
-        const item = await this.repository.findOne(where);
-
-        return item;
+        return await this.repository.findOne({where});
     }
 
     async create(data) {

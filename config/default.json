@@ -6,7 +6,7 @@
   "email": {
     "token": {
       "key": "tokenkey mdaa net slov che nada222",
-      "expiresIn": "24h"
+      "expiresIn": "1d"
     },
     "host": "smtp.gmail.com",
     "port": 465,

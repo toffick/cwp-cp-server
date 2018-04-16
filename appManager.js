@@ -14,7 +14,11 @@ module.exports = async (container) => {
     app.use(cookieParser(config.cookie.key));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
+    app.use(express.session({ secret: 'SECRET' }));
 
+    app.use(passport.initialize());
+    app.use(passport.session());
+    
     app.use('/auth', container.resolve('authController'));
     app.use('/api/v1', container.resolve('apiController'));
     app.use(container.resolve('errorGlobal'));
