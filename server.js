@@ -1,7 +1,7 @@
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
 const loader = require('./loader');
 const config = require('config');
-const app = require('./AppManager');
+const app = require('./appManager');
 const tempDataToDb = require('./helpers/tempDataToDb.helper');
 
 (async function () {
