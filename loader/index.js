@@ -4,6 +4,7 @@ const context = require('../db');
 const errors = require('../helpers/errors.helper');
 const apiController = require('../controllers/api');
 const authController = require('../controllers/auth');
+const passport = require('../helpers/passport.helper');
 const logger = require('winston');
 
 module.exports = () => {
@@ -28,6 +29,7 @@ module.exports = () => {
 
     container.register({
         errors: asValue(errors),
+        passport: asFunction(passport),
         logger: asValue(logger),
         Sequelize: asValue(Sequelize),
         context: asFunction(context)

@@ -10,10 +10,6 @@ class Authenticator {
         this.tokenService = tokenService;
     }
 
-    login() {
-
-    }
-
     async confirmRegistration(token) {
         const verifiedResult = await this.tokenService.verify(token, config.email.token.key);
 

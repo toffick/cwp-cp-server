@@ -1,31 +1,35 @@
 const {Router} = require('express');
 const wrap = require('../helpers/wrap.helper');
 
-module.exports = ({authenticatorService}) => {
+module.exports = ({authenticatorService, passport}) => {
     const router = Router({mergeParams: true});
 
     router.post('/registration', wrap(async (req, res) => {
         const serverPath = req.protocol + '://' + req.get('host');
-        const data = await authenticatorService.registration(req.body, serverPath);
 
-        res.json(data);
+        res.json(await authenticatorService.registration(req.body, serverPath));
     }));
 
     router.get('/confirm', wrap(async (req, res) => {
-        if (req.query.token) {
-            const data = await  authenticatorService.confirmRegistration(req.query.token);
-            res.json(data);
-        } else {
+        if (!req.query.token) {
             res.json({success: false, message: "Set token"});
+            return;
         }
 
+        res.json(await authenticatorService.confirmRegistration(req.query.token));
     }));
 
-    router.post('/login', wrap(async (req, res) => {
-        const data = authenticatorService.login(req.body);
+    router.post('/login',
+        passport.authenticate('local', {failureRedirect: '/login'}),
+        async (req, res) => {
+            res.json({});
+        });
 
-        res.json(data);
-    }));
+
+    router.get('/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
+    });
 
     return router;
 };

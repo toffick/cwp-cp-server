@@ -39,6 +39,11 @@ const errors = {
         code: 'bad_registration_data',
         status: 400
     },
+    accountNotVerified:{
+        message: 'Please confirm your account by link in email',
+        code: 'account not verified',
+        status: 403
+    },
     validError: (msg) => ({
         msg,
         code: 'validate_error',

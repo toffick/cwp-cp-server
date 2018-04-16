@@ -3,6 +3,9 @@
     "key": "secret key",
     "auth": "__auth_id"
   },
+  "session": {
+    "key": "sessssssoooookeeeeeyyy"
+  },
   "email": {
     "token": {
       "key": "tokenkey mdaa net slov che nada222",
