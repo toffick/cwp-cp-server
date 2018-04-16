@@ -22,7 +22,7 @@ module.exports = ({authenticatorService, passport}) => {
     router.post('/login',
         authenticatorService.authenticate(),
         (req, res) => {
-            res.redirect('/');
+            res.json({success: true});
         });
 
 

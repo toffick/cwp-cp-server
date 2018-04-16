@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Kolya",
+    "email": "myemail@gmail.com",
+    "password": "123",
+    "isVerified": true
+  },
+  {
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "admin",
+    "isVerified": true
+  }
+]
