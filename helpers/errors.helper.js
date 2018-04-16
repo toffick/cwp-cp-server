@@ -46,15 +46,10 @@ const express = require('express');
 
 express.response.error = function (error) {
     if (!error.code) {
-        error = errors.customError(
-            error.toString(),
-            'server_error',
-            500
-        )
+        error = errors.customError(error.toString(), 'server_error', 500)
     }
 
     this.status(error.status).json(error);
 };
-
 
 module.exports = errors;

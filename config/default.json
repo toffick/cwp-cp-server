@@ -1,0 +1,6 @@
+{
+  "cookie": {
+    "key": "secret key",
+    "auth": "__auth_id"
+  }
+}

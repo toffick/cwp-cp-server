@@ -1,0 +1,18 @@
+{
+  "app": {
+    "port": 9001
+  },
+  "db": {
+    "name": "cwp-cp-server",
+    "user": "root",
+    "password": "root",
+    "options": {
+      "dialect": "mysql",
+      "host": "localhost",
+      "timestamps": false,
+      "paranoid": false,
+      "freezeTableName": true,
+      "logging": false
+    }
+  }
+}
