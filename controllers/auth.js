@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const wrap = require('../helpers/wrap.helper');
 
-module.exports = ({authenticatorService, passport}) => {
+module.exports = ({authenticatorService}) => {
     const router = Router({mergeParams: true});
 
     router.post('/registration', wrap(async (req, res) => {
@@ -28,7 +28,7 @@ module.exports = ({authenticatorService, passport}) => {
 
     router.get('/logout', (req, res) => {
         req.logout();
-        res.redirect('/');
+        res.json({success: true});
     });
 
     return router;

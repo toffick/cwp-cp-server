@@ -9,12 +9,13 @@ module.exports = ({context, errors}) => {
         done(null, user.id);
     });
 
-    passport.deserializeUser((id, done) => {
-        userRepository.findById(id, (err, user) => {
-            err
-                ? done(err)
-                : done(null, user);
-        });
+    passport.deserializeUser(async (id, done) => {
+        const user = await userRepository.findById(id);
+
+        if (!user)
+            done(errors.notFound);
+
+        done(null, user);
     });
 
     passport.use(new LocalStrategy({
