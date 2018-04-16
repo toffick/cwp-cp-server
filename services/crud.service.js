@@ -49,6 +49,12 @@ class CrudService {
         return item;
     }
 
+    async readOne(where) {
+        const item = await this.repository.findOne(where);
+
+        return item;
+    }
+
     async create(data) {
         this._validateBySchema(data);
 

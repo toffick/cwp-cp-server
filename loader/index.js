@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const context = require('../db');
 const errors = require('../helpers/errors.helper');
 const apiController = require('../controllers/api');
+const authController = require('../controllers/auth');
 const logger = require('winston');
 
 module.exports = () => {
@@ -22,6 +23,7 @@ module.exports = () => {
 
     container.register({
         apiController: asFunction(apiController).singleton(),
+        authController: asFunction(authController).singleton(),
     });
 
     container.register({

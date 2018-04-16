@@ -10,5 +10,5 @@ const tempDataToDb = require('./helpers/tempDataToDb.helper');
 
     await tempDataToDb(container.resolve('context'));
 
-    server.listen(config.app.port, () => container.resolve('logger').log('Server running'));
+    server.listen(process.env.PORT || config.app.port, () => container.resolve('logger').log('Server running'));
 })();

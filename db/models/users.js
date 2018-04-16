@@ -9,15 +9,19 @@ module.exports = (Sequelize, sequelize) => {
             },
             email: Sequelize.STRING,
             password: Sequelize.STRING,
+            name: Sequelize.STRING,
             isVerified: {type: Sequelize.BOOLEAN, default: false},
         },
         {
             hooks: {
-                beforeCreate: (user) => {
-                    return bcrypt.genSalt(11)
-                        .then((salt) => bcrypt.hash(user.password, salt))
-                        .then((hash) => user.password = hash);
-                }
+                beforeCreate: (user) => bcrypt.genSalt(12)
+                    .then((salt) => bcrypt.hash(user.password, salt))
+                    .then((hash) => user.password = hash)
+                ,
+                beforeUpdate: (user) => bcrypt.genSalt(12)
+                    .then((salt) => bcrypt.hash(user.password, salt))
+                    .then((hash) => user.password = hash)
+
             }
         }
     );

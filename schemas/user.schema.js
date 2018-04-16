@@ -2,6 +2,7 @@ const Joi = require('joi');
 
 module.exports = () => ({
     id: Joi.number(),
-    name: Joi.string().min(1),
-    email: Joi.string().email()
+    email: Joi.string().email(),
+    password: Joi.string().min(8),
+    name: Joi.string().min(1)
 });

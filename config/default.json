@@ -2,5 +2,22 @@
   "cookie": {
     "key": "secret key",
     "auth": "__auth_id"
+  },
+  "email": {
+    "token": {
+      "key": "tokenkey mdaa net slov che nada222",
+      "expiresIn": "24h"
+    },
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "mailOptions": {
+      "from": "\"CinRtgs\"",
+      "subject": "Confirm yout registration✔",
+      "html": "<div><div>    <h2>CinRtgs Account Verification</h2>    <p>&nbsp;</p>    <p>Click the link below to verify your CinRtgs account</p>    <p><b><a href=!href! target=\"_blank\" rel=\" noopener noreferrer\">!href!</a></b></p>    <p>&nbsp;</p>    <p>This verification link expires 24 hours from the time that it was sent. </p>    <p>Sincerely,</p>    <p>CinRtgs Team</p>   </div></div>"
+    },
+    "credentials": {
+      "user": "kin4ikrating@gmail.com",
+      "pass": "qf2BzWoGTIBToQbu"
+    }
   }
 }

@@ -15,6 +15,7 @@ module.exports = async (container) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
 
+    app.use('/auth', container.resolve('authController'));
     app.use('/api/v1', container.resolve('apiController'));
     app.use(container.resolve('errorGlobal'));
 

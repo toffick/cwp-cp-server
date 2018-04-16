@@ -34,6 +34,16 @@ const errors = {
         code: 'empty_data',
         status: 400
     },
+    badRegistration: {
+        message: 'The email address you have entered is already associated with another account',
+        code: 'bad_registration_data',
+        status: 400
+    },
+    validError: (msg) => ({
+        msg,
+        code: 'validate_error',
+        status: 400
+    }),
     customError: (msg, code, status) =>
         ({
             msg,
@@ -41,6 +51,8 @@ const errors = {
             status
         })
 };
+
+module.exports = errors;
 
 const express = require('express');
 
@@ -52,4 +64,3 @@ express.response.error = function (error) {
     this.status(error.status).json(error);
 };
 
-module.exports = errors;
