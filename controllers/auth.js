@@ -20,9 +20,9 @@ module.exports = ({authenticatorService, passport}) => {
     }));
 
     router.post('/login',
-        passport.authenticate('local', {failureRedirect: '/login'}),
-        async (req, res) => {
-            res.json({});
+        authenticatorService.authenticate(),
+        (req, res) => {
+            res.redirect('/');
         });
 
 

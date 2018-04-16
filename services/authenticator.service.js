@@ -1,13 +1,16 @@
-const validator = require('../helpers/validator.helper');
 const config = require('config');
 
 class Authenticator {
-    constructor({errors, emailService, userService, userSchema, tokenService}) {
+    constructor({errors, emailService, userService, tokenService, passport}) {
         this.errors = errors;
         this.emailService = emailService;
-        this.schema = userSchema;
         this.userService = userService;
         this.tokenService = tokenService;
+        this.passport = passport;
+    }
+
+    authenticate() {
+        return this.passport.authenticate('local', {failureRedirect: '/login'});
     }
 
     async confirmRegistration(token) {
@@ -35,8 +38,6 @@ class Authenticator {
     }
 
     async registration(data, serverPath) {
-        this._validateBySchema(data);
-
         const user = await this.userService.readOne({email: data.email});
         if (user)
             throw this.errors.badRegistration;
@@ -58,12 +59,6 @@ class Authenticator {
         return `${serverPath}/auth/confirm?token=${token}`;
     }
 
-    _validateBySchema(data) {
-        let validCheck = validator(this.schema, data);
-        if (!validCheck.isValid) {
-            throw this.errors.validError(validCheck.errors);
-        }
-    }
 }
 
 module.exports = Authenticator;

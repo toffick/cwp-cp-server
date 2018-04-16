@@ -1,0 +1,19 @@
+{
+  "db": {
+    "name": "da41jkmte132u9",
+    "user": "erdtmacsrsrcpw",
+    "pass": "0f62e2a1884d2dae5eab858afc282877ecdd2e306a5f30ebc4e4dde0b5b0c46d",
+    "options": {
+      "host": "ec2-23-21-198-69.compute-1.amazonaws.com",
+      "port": 5432,
+      "dialect": "postgres",
+      "timestamps": false,
+      "paranoid": false,
+      "freezeTableName": true,
+      "logging": false,
+      "dialectOptions": {
+        "ssl": true
+      }
+    }
+  }
+}
