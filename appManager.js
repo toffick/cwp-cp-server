@@ -23,10 +23,6 @@ module.exports = async (container) => {
     app.use(container.resolve('passport').initialize());
     app.use(container.resolve('passport').session());
 
-    app.get('/', (req, res)=>{
-        res.send('Hello, esli ti ne Lena');
-    });
-
     app.use('/auth', container.resolve('authController'));
     app.use('/api/v1', container.resolve('apiController'));
     app.use(container.resolve('errorGlobal'));
