@@ -1,6 +1,6 @@
 const users = require('./users');
 
 module.exports = async (db) => {
-    await db['Users'].create(users[0]);
-    await db['Users'].create(users[1]);
+    const u1 = await db['Users'].create(users[0]);
+    const u2 = await db['Users'].create(users[1]);
 };

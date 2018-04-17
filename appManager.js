@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const session = require('express-session');
 
-module.exports = async (container) => {
-    await container.resolve('context').sequelize.sync({force: true});
+// TODO добавить нормальные ответы для auth
+// TODO следующий этап - РОЛИ
+// TODO потом создание архитектуры(фильмы, актеры, рецензии и т.д.)
 
+module.exports = (container) => {
     const app = express();
 
     app.use(express.static('public'));

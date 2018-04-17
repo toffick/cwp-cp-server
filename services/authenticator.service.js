@@ -25,7 +25,7 @@ class Authenticator {
                     const user = await this.userService.read(verifiedResult.payload.id);
 
                     if (user.isVerified)
-                        return {success: false, message: 'This account already been verified'};
+                        return {success: false, message: 'This account has already been verified'};
 
                     await this.userService.delete(verifiedResult.payload.id);
                     return {success: false, message: 'You must repeat the registration'};
@@ -34,7 +34,7 @@ class Authenticator {
         }
 
         await this.userService.confirmUserByEmail(verifiedResult.payload.id);
-        return {success: true};
+        return {success: true, message: "success account confirmation"};
     }
 
     async registration(data, serverPath) {

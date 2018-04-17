@@ -9,6 +9,11 @@ const errors = {
         code: 'invalid_token',
         status: 400
     },
+    undefinedRole:{
+        message: 'Role not fount',
+        code: 'role_not_found',
+        status: 404
+    },
     notFound: {
         message: 'Entity not found',
         code: 'entity_not_found',

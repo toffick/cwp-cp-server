@@ -3,12 +3,14 @@
     "name": "Kolya",
     "email": "myemail@gmail.com",
     "password": "123",
+    "roleLevel": 1,
     "isVerified": true
   },
   {
     "name": "admin",
     "email": "admin@gmail.com",
     "password": "admin",
+    "roleLevel": 2,
     "isVerified": true
   }
 ]

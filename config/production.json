@@ -13,6 +13,11 @@
       "logging": false,
       "dialectOptions": {
         "ssl": true
+      },
+      "define": {
+        "timestamps": false,
+        "paranoid": false,
+        "freezeTableName": true
       }
     }
   }

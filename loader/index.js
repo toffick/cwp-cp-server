@@ -1,11 +1,7 @@
 const {createContainer, asClass, asValue, asFunction, Lifetime} = require('awilix');
-const Sequelize = require('sequelize');
-const context = require('../db');
-const errors = require('../helpers/errors.helper');
-const apiController = require('../controllers/api');
-const authController = require('../controllers/auth');
-const passport = require('../helpers/passport.helper');
-const logger = require('winston');
+const logger = require('log4js').getLogger();
+
+logger.level = 'info';
 
 module.exports = () => {
     const container = createContainer();
@@ -13,6 +9,7 @@ module.exports = () => {
     container.loadModules([
         ['services/*.js', {register: asClass}],
         ['controllers/routes/*.js', {register: asClass}],
+        ['controllers/*.js', {register: asFunction}],
         ['global-controllers/*.js', {register: asFunction}],
         ['schemas/*.js', {register: asFunction}]
     ], {
@@ -23,17 +20,15 @@ module.exports = () => {
     });
 
     container.register({
-        apiController: asFunction(apiController).singleton(),
-        authController: asFunction(authController).singleton(),
+        passport: asFunction(require('../helpers/passport.helper')),
+        context: asFunction(require('../db'))
     });
 
     container.register({
-        errors: asValue(errors),
-        passport: asFunction(passport),
+        errors: asValue(require('../helpers/errors.helper')),
         logger: asValue(logger),
-        Sequelize: asValue(Sequelize),
-        context: asFunction(context)
+        Sequelize: asValue(require('sequelize')),
+        roles: asValue(require('../helpers/roles')),
     });
-
     return container;
 };

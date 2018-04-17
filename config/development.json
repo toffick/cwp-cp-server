@@ -12,7 +12,12 @@
       "timestamps": false,
       "paranoid": false,
       "freezeTableName": true,
-      "logging": false
+      "logging": false,
+      "define": {
+        "timestamps": false,
+        "paranoid": false,
+        "freezeTableName": true
+      }
     }
   }
 }
