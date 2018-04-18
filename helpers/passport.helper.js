@@ -12,11 +12,12 @@ module.exports = ({context, errors, roles}) => {
     passport.deserializeUser(async (id, done) => {
         const user = await userRepository.findById(id);
 
-        if (!user)
+        if (!user) {
             done(errors.notFound);
+            return;
+        }
 
         user.role = roles[user.role];
-
         done(null, user);
     });
 

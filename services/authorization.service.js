@@ -8,23 +8,24 @@ class AuthorizationService {
     }
 
     async checkPermissions(user, path, method) {
-        const permissionPath = Object.keys(this.permissions).find(pathRg => path.match(new RegExp(pathRg)));
-        if (!permissionPath)
+        const currentUserRole = user && user.role || this.roles['ANON'];
+        const pathObj = this.permissions.find(item => item.pathRegExp.test(path));
+        if (!pathObj)
             return true;
 
-        const permission = this.permissions[permissionPath];
+        const allowedRoleObj = pathObj.permissions.filter(item => this.roles[item.role].level <= currentUserRole.level);
 
-        const allowedRoleObj = permission.find(item => item.role === user.role.name);
-
-        if (!allowedRoleObj)
+        if (allowedRoleObj.length === 0)
             throw this.errors.accessDenied;
 
-        const allowedRole = this.roles[allowedRoleObj.role];
+        let foundedPermission = false;
 
-        if (user.role.level < allowedRole.level)
-            throw this.errors.accessDenied;
+        allowedRoleObj.forEach(perm => {
+            if (perm.methods.findIndex(permMethod => permMethod === method) !== -1)
+                foundedPermission = true;
+        });
 
-        if (allowedRoleObj.methods.find(allowMethod => allowMethod === method) === undefined)
+        if (!foundedPermission)
             throw this.errors.methodNotAllowed;
 
         return true;

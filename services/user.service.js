@@ -25,7 +25,7 @@ class UserService extends CrudService {
         const role = this.roles[roleName.toUpperCase()];
         if(!role) throw this.errors.undefinedRole;
 
-        await this.repository.update({roleLevel: role.level}, {where: {id: userId}, limit: 1});
+        await this.repository.update({role: role.name}, {where: {id: userId}, limit: 1});
 
         const user = await  this.read(userId);
         return {success: true, message: `user ${user.name} got the ${role.name} role`}
