@@ -28,7 +28,7 @@ module.exports = () => {
         errors: asValue(require('../helpers/errors.helper')),
         logger: asValue(logger),
         Sequelize: asValue(require('sequelize')),
-        roles: asValue(require('../helpers/roles')),
+        roles: asValue(require('../helpers/roles.helper')),
     });
     return container;
 };

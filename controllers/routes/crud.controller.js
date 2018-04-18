@@ -2,8 +2,9 @@ const {Router} = require('express');
 const wrap = require('../../helpers/wrap.helper');
 
 class CrudController {
-    constructor(service) {
+    constructor(service, paramName) {
         this.service = service;
+        this.paramName = `${paramName}Id`;
 
         this.readAll = this.readAll.bind(this);
         this.read = this.read.bind(this);
@@ -17,7 +18,7 @@ class CrudController {
                 {method: 'get', cb: this.readAll},
                 {method: 'post', cb: this.create}
             ],
-            '/:id': [
+            [`/:${this.paramName}`]: [
                 {method: 'get', cb: this.read},
                 {method: 'put', cb: this.update},
                 {method: 'delete', cb: this.delete}
@@ -30,7 +31,7 @@ class CrudController {
     }
 
     async read(req, res) {
-        res.json(await this.service.read(req.params.id));
+        res.json(await this.service.read(req.params[this.paramName]));
     }
 
     async create(req, res) {
@@ -38,14 +39,15 @@ class CrudController {
     }
 
     async update(req, res) {
-        res.json(await this.service.update(req.params.id, req.body));
+        res.json(await this.service.update(req.params[this.paramName], req.body));
     }
 
     async delete(req, res) {
-        res.json(await this.service.delete(req.params.id));
+        res.json(await this.service.delete(req.params[this.paramName]));
     }
 
     registerRoutes() {
+
         Object.keys(this.routes).forEach(route => {
             let handlers = this.routes[route];
 

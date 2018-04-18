@@ -10,7 +10,7 @@ module.exports = (Sequelize, sequelize) => {
             email: Sequelize.STRING,
             password: Sequelize.STRING,
             name: Sequelize.STRING,
-            roleLevel: Sequelize.INTEGER,
+            role: Sequelize.STRING,
             isVerified: {type: Sequelize.BOOLEAN, default: false},
         },
         {
