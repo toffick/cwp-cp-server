@@ -1,7 +1,7 @@
 const {createContainer, asClass, asValue, asFunction, Lifetime} = require('awilix');
 const logger = require('log4js').getLogger();
 
-logger.level = 'info';
+logger.level = 'debug';
 
 module.exports = () => {
     const container = createContainer();

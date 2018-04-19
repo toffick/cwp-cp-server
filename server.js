@@ -11,7 +11,7 @@ const tempDataToDb = require('./tempData/tempDataToDb.helper');
     db.sequelize.sync({force: true})
         .then(() => {
             logger.info('Database connected');
-            return tempDataToDb(db);
+            return tempDataToDb(db, logger);
         })
         .then(() => {
             server.listen(process.env.PORT || config.app.port, () => container.resolve('logger').info('Server running'));
