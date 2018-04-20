@@ -20,7 +20,7 @@ module.exports = ({authenticatorService, logger, authenticatorGlobal}) => {
     }));
 
     router.post('/login',
-        authenticatorService.authenticate(),
+        authenticatorService.login(),
         (req, res) => {
             logger.trace(`passport/login -> ${req.user.email}[${req.user.role}] authenticated`);
             res.json({success: true, user: req.user});
