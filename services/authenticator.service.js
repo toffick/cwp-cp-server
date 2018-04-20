@@ -9,7 +9,7 @@ class Authenticator {
         this.passport = passport;
     }
 
-    authenticate() {
+    login() {
         return this.passport.authenticate('local', {failureRedirect: '/login'});
     }
 
