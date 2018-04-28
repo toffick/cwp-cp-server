@@ -4,8 +4,12 @@ module.exports = (Sequelize, sequelize) => sequelize.define('movies', {
         primaryKey: true,
         autoIncrement: true
     },
-    description: Sequelize.STRING(512),
     title: Sequelize.STRING(512),
-    cover_url: Sequelize.STRING(512)
+    year: Sequelize.INTEGER,
+    runtime: Sequelize.INTEGER,
+    director: Sequelize.STRING(200),
+    plot: Sequelize.STRING(2000),
+    actors: Sequelize.STRING(200),
+    posterUrl: Sequelize.STRING(512)
 });
 
