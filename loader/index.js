@@ -1,13 +1,13 @@
 const {createContainer, asClass, asValue, asFunction, Lifetime} = require('awilix');
 const logger = require('log4js').getLogger();
 
-logger.level = 'debug';
+logger.level = 'trace';
 
 module.exports = () => {
     const container = createContainer();
 
     container.loadModules([
-        ['services/*.js', {register: asClass}],
+        ['services/**/*.js', {register: asClass}],
         ['controllers/routes/*.js', {register: asClass}],
         ['controllers/*.js', {register: asFunction}],
         ['global-controllers/*.js', {register: asFunction}],

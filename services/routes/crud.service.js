@@ -1,4 +1,4 @@
-const validator = require('../helpers/validator.helper');
+const validator = require('../../helpers/validator.helper');
 
 class CrudService {
     constructor(repository, schema, errors) {

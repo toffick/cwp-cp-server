@@ -1,8 +1,8 @@
 const CrudController = require('./crud.controller');
 
 class UserController extends CrudController {
-    constructor({userService,reviewController}) {
-        super(userService, 'user');
+    constructor({userService, reviewController, cacheService}) {
+        super(userService, 'user', cacheService);
 
         this.changeRole = this.changeRole.bind(this);
         this.getProfile = this.getProfile.bind(this);

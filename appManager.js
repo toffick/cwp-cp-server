@@ -22,6 +22,7 @@ module.exports = (container) => {
     app.use('/auth', container.resolve('authController'));
     app.use(container.resolve('authenticatorGlobal'));
     app.use(container.resolve('authorizationGlobal'));
+    app.use(container.resolve('cacheGlobal'));
     app.use('/api/v1', container.resolve('apiController'));
     app.use(container.resolve('errorGlobal'));
     return app;

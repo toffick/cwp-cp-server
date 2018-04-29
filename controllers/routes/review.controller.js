@@ -1,8 +1,8 @@
 const CrudController = require('./crud.controller');
 
 class ReviewController extends CrudController {
-    constructor({reviewService}) {
-        super(reviewService, 'review');
+    constructor({reviewService, cacheService}) {
+        super(reviewService, 'review', cacheService);
 
         this.registerRoutes();
     }

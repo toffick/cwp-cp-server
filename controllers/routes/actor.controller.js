@@ -1,8 +1,8 @@
 const CrudController = require('./crud.controller');
 
 class ActorController extends CrudController {
-    constructor({actorService}) {
-        super(actorService, 'actor');
+    constructor({actorService, cacheService}) {
+        super(actorService, 'actor', cacheService);
 
         this.getMovies = this.getMovies.bind(this);
 

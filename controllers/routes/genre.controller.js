@@ -1,8 +1,8 @@
 const CrudController = require('./crud.controller');
 
 class GenreController extends CrudController {
-    constructor({genreService}) {
-        super(genreService, 'genre');
+    constructor({genreService, cacheService}) {
+        super(genreService, 'genre', cacheService);
 
         this.getMovies = this.getMovies.bind(this);
 
@@ -15,7 +15,7 @@ class GenreController extends CrudController {
         res.json(await this.service.getMovies(req.params.genreId));
     }
 
-    async popularGenre(){
+    async popularGenre() {
 
     }
 }
