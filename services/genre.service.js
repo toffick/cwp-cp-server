@@ -4,6 +4,15 @@ class GenreService extends CrudService {
     constructor({context, genreSchema, errors}) {
         super(context['Genres'], genreSchema, errors);
     }
+
+    async getMovies(genreId){
+        const genre = await  super.read(genreId);
+        const movies = await genre.getMovies();
+
+        return {
+            movies
+        }
+    }
 }
 
 module.exports = GenreService;

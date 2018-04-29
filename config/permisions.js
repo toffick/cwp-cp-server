@@ -1,5 +1,6 @@
 // userProtected - check permission of resource  access by condition of resource id and session user id
 module.exports = [
+
     {
         pathRegExp: /^\/api\/v1\/users\/\d+\/role$/,
         permissions: [
@@ -31,7 +32,18 @@ module.exports = [
             }
         ]
     },
-
+    {
+        pathRegExp: /^\/api\/v1\/(actors|movies|genres)\/\d+\/get-(movies|actors|genres)$/,
+        permissions: [
+            {
+                userProtected: false,
+                role: 'ANON',
+                methods: [
+                    'GET'
+                ]
+            }
+        ]
+    },
     {
         pathRegExp: /^\/api\/v1\/(actors|movies|genres)$/,
         permissions: [
@@ -52,16 +64,8 @@ module.exports = [
         ]
     },
     {
-        pathRegExp: /^\/api\/v1\/users\/\d+\/reviews\/\d+$/,
+        pathRegExp: /^\/api\/v1\/users\/\d+\/profile$/,
         permissions: [
-            {
-                userProtected: true,
-                role: 'USER',
-                methods: [
-                    'PUT',
-                    'DELETE'
-                ]
-            },
             {
                 userProtected: false,
                 role: 'ANON',
@@ -72,8 +76,16 @@ module.exports = [
         ]
     },
     {
-        pathRegExp: /^\/api\/v1\/users\/\d+\/profile$/,
+        pathRegExp: /^\/api\/v1\/users\/\d+\/reviews\/\d+$/,
         permissions: [
+            {
+                userProtected: true,
+                role: 'USER',
+                methods: [
+                    'PUT',
+                    'DELETE'
+                ]
+            },
             {
                 userProtected: false,
                 role: 'ANON',
