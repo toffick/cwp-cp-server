@@ -1,12 +1,10 @@
+// userProtected - check permission of resource  access by condition of resource id and session user id
 module.exports = [
-    // /auth
-    // /api/v1/users
-    // /api/v1/users/1
-    // /api/v1/users/1/role
     {
         pathRegExp: /^\/api\/v1\/users\/\d+\/role$/,
         permissions: [
             {
+                userProtected: false,
                 role: 'ADMIN',
                 methods: [
                     'POST']
@@ -14,19 +12,94 @@ module.exports = [
         ]
     },
     {
-        pathRegExp: /^\/api\/v1\/users\/\d+$/,
+        pathRegExp: /^\/api\/v1\/(actors|movies|genres)\/\d+$/,
         permissions: [
             {
-                role: 'USER',
+                userProtected: false,
+                role: 'ADMIN',
                 methods: [
-                    'UPDATE',
                     'PUT',
                     'DELETE'
                 ]
             },
             {
+                userProtected: false,
                 role: 'ANON',
                 methods: [
+                    'GET'
+                ]
+            }
+        ]
+    },
+
+    {
+        pathRegExp: /^\/api\/v1\/(actors|movies|genres)$/,
+        permissions: [
+            {
+                userProtected: false,
+                role: 'ADMIN',
+                methods: [
+                    'POST'
+                ]
+            },
+            {
+                userProtected: false,
+                role: 'ANON',
+                methods: [
+                    'GET'
+                ]
+            }
+        ]
+    },
+    {
+        pathRegExp: /^\/api\/v1\/users\/\d+\/reviews\/\d+$/,
+        permissions: [
+            {
+                userProtected: true,
+                role: 'USER',
+                methods: [
+                    'PUT',
+                    'DELETE'
+                ]
+            },
+            {
+                userProtected: false,
+                role: 'ANON',
+                methods: [
+                    'GET'
+                ]
+            }
+        ]
+    },
+
+    {
+        pathRegExp: /^\/api\/v1\/users\/\d+\/reviews$/,
+        permissions: [
+            {
+                userProtected: true,
+                role: 'USER',
+                methods: [
+                    'POST'
+                ]
+            },
+            {
+                userProtected: false,
+                role: 'ANON',
+                methods: [
+                    'GET'
+                ]
+            }
+        ]
+    },
+    {
+        pathRegExp: /^\/api\/v1\/users\/\d+$/,
+        permissions: [
+            {
+                userProtected: true,
+                role: 'USER',
+                methods: [
+                    'PUT',
+                    'DELETE',
                     'GET'
                 ]
             }
@@ -34,16 +107,13 @@ module.exports = [
     },
     {
         pathRegExp: /^\/api\/v1\/users$/,
+        userOwnResource: false,
         permissions: [
             {
-                role: 'USER',
+                userProtected: false,
+                role: 'ADMIN',
                 methods: [
-                    'POST'
-                ]
-            },
-            {
-                role: 'ANON',
-                methods: [
+                    'POST',
                     'GET'
                 ]
             }
@@ -51,8 +121,10 @@ module.exports = [
     },
     {
         pathRegExp: /^\/auth$/,
+        userOwnResource: false,
         permissions: [
             {
+                userProtected: false,
                 role: 'ANON',
                 methods: [
                     'GET',

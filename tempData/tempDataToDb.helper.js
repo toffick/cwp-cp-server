@@ -4,7 +4,7 @@ const genres = require('./genres');
 const actors = require('./actors');
 const reviews = require('./reviews');
 
-module.exports = async (db, logger) => {
+module.exports = async (db) => {
     const usersItems = [];
 
     for(let user of users){

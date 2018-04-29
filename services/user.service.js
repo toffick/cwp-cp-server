@@ -31,6 +31,10 @@ class UserService extends CrudService {
         return {success: true, message: `user ${user.name} got the ${role.name} role`}
     }
 
+    async getProfile(userId){
+
+    }
+
 }
 
 module.exports = UserService;
