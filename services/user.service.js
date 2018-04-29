@@ -23,7 +23,7 @@ class UserService extends CrudService {
 
     async changeRole(userId, roleName) {
         const role = this.roles[roleName.toUpperCase()];
-        if(!role) throw this.errors.undefinedRole;
+        if (!role) throw this.errors.undefinedRole;
 
         await this.repository.update({role: role.name}, {where: {id: userId}, limit: 1});
 
@@ -31,10 +31,17 @@ class UserService extends CrudService {
         return {success: true, message: `user ${user.name} got the ${role.name} role`}
     }
 
-    async getProfile(userId){
-        const user = super.read(userId);
+    async getProfile(userId) {
+        const user = await  super.read(userId);
+        const reviews = await user.getReviews();
 
-
+        const {email, name, role} = user;
+        return {
+            email,
+            name,
+            role,
+            reviews
+        }
     }
 
 }

@@ -7,5 +7,5 @@ module.exports = () => ({
     runtime: Joi.number().min(1),
     director: Joi.string().min(1).max(256),
     plot: Joi.string().min(1).max(2048),
-    posterUrl: Joi.string().min(1).max(256),
+    posterUrl: Joi.string().min(1).max(512),
 });

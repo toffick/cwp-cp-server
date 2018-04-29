@@ -71,7 +71,18 @@ module.exports = [
             }
         ]
     },
-
+    {
+        pathRegExp: /^\/api\/v1\/users\/\d+\/profile$/,
+        permissions: [
+            {
+                userProtected: false,
+                role: 'ANON',
+                methods: [
+                    'GET'
+                ]
+            }
+        ]
+    },
     {
         pathRegExp: /^\/api\/v1\/users\/\d+\/reviews$/,
         permissions: [

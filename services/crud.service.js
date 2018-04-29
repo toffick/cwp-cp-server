@@ -40,7 +40,7 @@ class CrudService {
             throw this.errors.invalidId;
         }
 
-        const item = await this.repository.findById(id, {raw: true});
+        const item = await this.repository.findById(id);
 
         if (!item) {
             throw this.errors.notFound;
