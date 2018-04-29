@@ -12,5 +12,110 @@
     "password": "admin",
     "role": "ADMIN",
     "isVerified": true
+  },
+  {
+    "name": "Carey",
+    "email": "careycampbell@biotica.com",
+    "password": "aarey",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Chandler",
+    "email": "chandlercampbell@biotica.com",
+    "password": "hhandler",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Burch",
+    "email": "burchcampbell@biotica.com",
+    "password": "uurch",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Lina",
+    "email": "linacampbell@biotica.com",
+    "password": "iina",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Powers",
+    "email": "powerscampbell@biotica.com",
+    "password": "oowers",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Galloway",
+    "email": "gallowaycampbell@biotica.com",
+    "password": "aalloway",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Griffin",
+    "email": "griffincampbell@biotica.com",
+    "password": "rriffin",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Caitlin",
+    "email": "caitlincampbell@biotica.com",
+    "password": "aaitlin",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Rosales",
+    "email": "rosalescampbell@biotica.com",
+    "password": "oosales",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Paula",
+    "email": "paulacampbell@biotica.com",
+    "password": "aaula",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Espinoza",
+    "email": "espinozacampbell@biotica.com",
+    "password": "sspinoza",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Giles",
+    "email": "gilescampbell@biotica.com",
+    "password": "iiles",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Carney",
+    "email": "carneycampbell@biotica.com",
+    "password": "aarney",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Santiago",
+    "email": "santiagocampbell@biotica.com",
+    "password": "aantiago",
+    "role": "USER",
+    "isVerified": true
+  },
+  {
+    "name": "Roxie",
+    "email": "roxiecampbell@biotica.com",
+    "password": "ooxie",
+    "role": "USER",
+    "isVerified": true
   }
 ]

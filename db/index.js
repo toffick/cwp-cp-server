@@ -1,4 +1,4 @@
-const {users, movies, genres, actors} = require('./models');
+const {users, movies, genres, actors, reviews} = require('./models');
 const config = require('config');
 
 module.exports = ({Sequelize}) => {
@@ -8,6 +8,7 @@ module.exports = ({Sequelize}) => {
     const Movies = movies(Sequelize, sequelize);
     const Genres = genres(Sequelize, sequelize);
     const Actors = actors(Sequelize, sequelize);
+    const Reviews = reviews(Sequelize, sequelize);
 
     Movies.belongsToMany(Genres, {through: 'genres_movies', as: 'Genres'});
     Genres.belongsToMany(Movies, {through: 'genres_movies',  as: 'Movies'});
@@ -15,11 +16,14 @@ module.exports = ({Sequelize}) => {
     Movies.belongsToMany(Actors, {through: 'actors_movies', as: 'Actors'});
     Actors.belongsToMany(Movies, {through: 'actors_movies',  as: 'Movies'});
 
+    Users.hasMany(Reviews);
+
     return {
         Users,
         Movies,
         Genres,
         Actors,
+        Reviews,
 
         sequelize,
         Sequelize

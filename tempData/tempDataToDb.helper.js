@@ -2,22 +2,24 @@ const users = require('./users');
 const movies = require('./movies');
 const genres = require('./genres');
 const actors = require('./actors');
+const reviews = require('./reviews');
 
 module.exports = async (db, logger) => {
-    const u1 = await db['Users'].create(users[0]);
-    const u2 = await db['Users'].create(users[1]);
+    const usersItems = await db['Users'].bulkCreate(users);
 
     const moviesItems = await db['Movies'].bulkCreate(movies);
     const genresItems = await db['Genres'].bulkCreate(genres);
     const actorsItem = await db['Actors'].bulkCreate(actors);
+    const reviewsItem = await db['Reviews'].bulkCreate(reviews);
 
-    await  associator(moviesItems, genresItems, 5, 'Genre');
-    await  associator(moviesItems, actorsItem, 10, 'Actor');
+    await  associateItemsMM(moviesItems, genresItems, 5, 'Genre');
+    await  associateItemsMM(moviesItems, actorsItem, 10, 'Actor');
+    await  associateItemsNM(usersItems, reviewsItem, 'Review');
 
     logger.info('tempDataToDb -> the test data was added to db');
 };
 
-const associator = async (sourceItems, targetItems, associateCount, modelType) => {
+const associateItemsMM = async (sourceItems, targetItems, associateCount, modelType) => {
     for (let i = 0; i < sourceItems.length; i++) {
         const del = (i + 1);
         for (let y = 0; y <= del % associateCount; y++) {
@@ -27,3 +29,11 @@ const associator = async (sourceItems, targetItems, associateCount, modelType) =
     }
 };
 
+const associateItemsNM = async (sourceItems, targetItems, modelType) => {
+    for (let i = 0; i < targetItems.length; i++) {
+        for (let y = 0; y <= i; y++) {
+            const newID = ((i+2)*11)  % sourceItems.length;
+            await sourceItems[newID][`add${modelType}`](targetItems[i]);
+        }
+    }
+};
