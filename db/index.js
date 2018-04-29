@@ -16,7 +16,7 @@ module.exports = ({Sequelize}) => {
     Movies.belongsToMany(Actors, {through: 'actors_movies', as: 'Actors'});
     Actors.belongsToMany(Movies, {through: 'actors_movies',  as: 'Movies'});
 
-    Users.hasMany(Reviews);
+    Movies.hasMany(Reviews);
 
     return {
         Users,

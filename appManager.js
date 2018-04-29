@@ -24,6 +24,5 @@ module.exports = (container) => {
     app.use(container.resolve('authorizationGlobal'));
     app.use('/api/v1', container.resolve('apiController'));
     app.use(container.resolve('errorGlobal'));
-
     return app;
 };

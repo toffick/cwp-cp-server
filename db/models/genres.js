@@ -4,6 +4,6 @@ module.exports = (Sequelize, sequelize) => sequelize.define('genres', {
         primaryKey: true,
         autoIncrement: true
     },
-    name: Sequelize.STRING(100)
+    name: Sequelize.STRING(128)
 });
 

@@ -5,7 +5,11 @@ const actors = require('./actors');
 const reviews = require('./reviews');
 
 module.exports = async (db, logger) => {
-    const usersItems = await db['Users'].bulkCreate(users);
+    const usersItems = [];
+
+    for(let user of users){
+        usersItems.push(await db['Users'].create(user))
+    }
 
     const moviesItems = await db['Movies'].bulkCreate(movies);
     const genresItems = await db['Genres'].bulkCreate(genres);
@@ -14,9 +18,7 @@ module.exports = async (db, logger) => {
 
     await  associateItemsMM(moviesItems, genresItems, 5, 'Genre');
     await  associateItemsMM(moviesItems, actorsItem, 10, 'Actor');
-    await  associateItemsNM(usersItems, reviewsItem, 'Review');
-
-    logger.info('tempDataToDb -> the test data was added to db');
+    await  associateItemsNM(moviesItems.slice(0,15), reviewsItem, 'Review');
 };
 
 const associateItemsMM = async (sourceItems, targetItems, associateCount, modelType) => {
