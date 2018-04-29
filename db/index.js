@@ -1,4 +1,4 @@
-const {users, movies, genres} = require('./models');
+const {users, movies, genres, actors} = require('./models');
 const config = require('config');
 
 module.exports = ({Sequelize}) => {
@@ -7,18 +7,21 @@ module.exports = ({Sequelize}) => {
     const Users = users(Sequelize, sequelize);
     const Movies = movies(Sequelize, sequelize);
     const Genres = genres(Sequelize, sequelize);
+    const Actors = actors(Sequelize, sequelize);
 
-    Movies.belongsToMany(Genres, {through: 'movies_genres'});
-    Genres.belongsToMany(Movies, {through: 'movies_genres'});
+    Movies.belongsToMany(Genres, {through: 'genres_movies', as: 'Genres'});
+    Genres.belongsToMany(Movies, {through: 'genres_movies',  as: 'Movies'});
+
+    Movies.belongsToMany(Actors, {through: 'actors_movies', as: 'Actors'});
+    Actors.belongsToMany(Movies, {through: 'actors_movies',  as: 'Movies'});
 
     return {
         Users,
         Movies,
         Genres,
+        Actors,
 
         sequelize,
         Sequelize
     };
 };
-
-//TODO ошибка добавления

@@ -9,7 +9,6 @@ module.exports = (Sequelize, sequelize) => sequelize.define('movies', {
     runtime: Sequelize.INTEGER,
     director: Sequelize.STRING(200),
     plot: Sequelize.STRING(2000),
-    actors: Sequelize.STRING(200),
     posterUrl: Sequelize.STRING(512)
 });
 
