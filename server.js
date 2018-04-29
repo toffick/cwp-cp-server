@@ -9,13 +9,11 @@ const tempDataToDb = require('./tempData/tempDataToDb.helper');
     const logger = container.resolve('logger');
 
     try {
-        await db.sequelize.sync({force: config.db.forceMode});
+        await db.sequelize.sync({force: true});
         logger.info(`Database successfully created`);
 
-        if (config.db.forceMode) {
-            await tempDataToDb(db);
-            logger.info('tempDataToDb -> the test data was added to db');
-        }
+        await tempDataToDb(db);
+        logger.info('tempDataToDb -> the test data was added to db');
 
         server.listen(process.env.PORT || config.app.port,
             () => logger.info('Server running'));

@@ -3,7 +3,6 @@
     "port": 9001
   },
   "db": {
-    "forceMode": false,
     "name": "cwp-cp-server",
     "user": "root",
     "password": "root",

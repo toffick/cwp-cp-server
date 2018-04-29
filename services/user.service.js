@@ -32,6 +32,8 @@ class UserService extends CrudService {
     }
 
     async getProfile(userId){
+        const user = super.read(userId);
+
 
     }
 
