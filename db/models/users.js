@@ -11,7 +11,7 @@ module.exports = (Sequelize, sequelize) => {
             password: Sequelize.STRING,
             name: Sequelize.STRING,
             role: Sequelize.STRING,
-            isVerified: {type: Sequelize.BOOLEAN, default: false},
+            isVerified: {type: Sequelize.BOOLEAN, defaultValue: false},
         },
         {
             hooks: {

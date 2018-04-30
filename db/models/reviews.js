@@ -6,7 +6,8 @@ module.exports = (Sequelize, sequelize) => sequelize.define('reviews', {
     },
     text: Sequelize.STRING(2000),
     datestamp: Sequelize.BIGINT,
-    rating: Sequelize.FLOAT,
-    userId: Sequelize.INTEGER
+    mark: Sequelize.INTEGER,
+    userId: Sequelize.INTEGER,
+    movieId: Sequelize.INTEGER
 });
 
