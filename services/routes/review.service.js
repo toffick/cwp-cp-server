@@ -5,6 +5,7 @@ class ReviewService extends CrudService {
     constructor({context, reviewSchema, errors}) {
         super(context['Reviews'], reviewSchema, errors);
         this.moviesRepository = context['Movies'];
+        this.defaults.allowedFilterProps =  ['datestamp', 'mark'];
     }
 
     async create(data, userId) {

@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const wrap = require('../helpers/wrap.helper');
 
-module.exports = ({authenticatorService, logger, authenticatorGlobal}) => {
+module.exports = ({authenticatorService, logger}) => {
     const router = Router({mergeParams: true});
 
     router.post('/registration', wrap(async (req, res) => {
@@ -31,7 +31,6 @@ module.exports = ({authenticatorService, logger, authenticatorGlobal}) => {
         if (!req.isAuthenticated())
             throw this.errors.unauthorized;
 
-        //TODO logger trace does not work
         logger.trace(`passport/logout -> ${req.user.email}[${req.user.role}] logout from system`);
         req.logout();
         res.json({success: true});

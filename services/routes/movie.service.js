@@ -6,6 +6,8 @@ class MovieService extends CrudService {
         this.actorsRepository = context['Actors'];
         this.genresRepository = context['Genres'];
         this.reviewsRepository = context['Reviews'];
+
+        this.defaults.allowedFilterProps = ['title', 'year', 'runtime', 'director', 'ratingCount', 'rating'];
     }
 
     async read(movieId) {
@@ -34,6 +36,16 @@ class MovieService extends CrudService {
         }
 
         return item;
+    }
+
+    readChunk(query) {
+        const findOptions = this._normalizeOptions(query);
+
+        return this.repository.findAll({
+                ...findOptions,
+                include: [{model: this.genresRepository, as: 'genres', attributes: ['name']}]
+            }
+        )
     }
 }
 

@@ -5,7 +5,7 @@ module.exports = (Sequelize, sequelize) => sequelize.define('reviews', {
         autoIncrement: true
     },
     text: Sequelize.STRING(2000),
-    datestamp: Sequelize.BIGINT,
+    datestamp: {type: Sequelize.BIGINT, defaultValue: Date.now()},
     mark: Sequelize.INTEGER,
     userId: Sequelize.INTEGER,
     movieId: Sequelize.INTEGER

@@ -1,4 +1,5 @@
 const validator = require('../../helpers/validator.helper');
+const sqs = require('sequelize-querystring');
 
 class CrudService {
     constructor(repository, schema, errors) {
@@ -12,25 +13,17 @@ class CrudService {
                 offset: 0,
                 sortOrder: 'asc',
                 sortField: 'id'
-            }
+            },
+            allowedFilterProps: ['id']
         };
     }
 
-    readChunk(options, whereConditions) {
-        options = {
-            ...this.defaults.readChunk,
-            ...options
-        };
-        let limit = Number(options.limit) || this.defaults.readChunk.limit;
-        let offset = Number(options.offset) || this.defaults.readChunk.offset;
+    readChunk(query) {
+        const findOptions = this._normalizeOptions(query);
 
-        return this.repository.findAll({
-            where: {...whereConditions},
-            limit,
-            offset,
-            order: [[options.sortField, options.sortOrder.toUpperCase()]],
-            raw: true
-        });
+        return this.repository.findAll(
+            findOptions
+        )
     }
 
     async read(id) {
@@ -78,6 +71,32 @@ class CrudService {
         if (!validCheck.isValid) {
             throw this.errors.validError(validCheck.errors);
         }
+    }
+
+    /**
+     *Create object for find chunk
+     * @param query {String}
+     * query string from request
+     *
+     * @param defOpt {Object} (optional)
+     * additional options
+     *
+     * @return {object} object to find
+     */
+    _normalizeOptions(query) {
+
+        let limit = Number(query.limit) || this.defaults.readChunk.limit;
+        let offset = Number(query.offset) || this.defaults.readChunk.offset;
+
+        const options = {
+            ...this.defaults.readChunk,
+            limit,
+            offset,
+            where: query.filter ? sqs.find(query.filter, this.defaults.allowedFilterProps) : {},
+            order: query.sort ? sqs.sort(query.sort) : []
+        };
+
+        return options;
     }
 }
 
