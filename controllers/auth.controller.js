@@ -1,7 +1,8 @@
 const {Router} = require('express');
 const wrap = require('../helpers/wrap.helper');
 
-module.exports = ({authenticatorService, logger}) => {
+//TODO validation
+module.exports = ({authenticatorService, logger, errors}) => {
     const router = Router({mergeParams: true});
 
     router.post('/registration', wrap(async (req, res) => {
@@ -26,10 +27,13 @@ module.exports = ({authenticatorService, logger}) => {
             res.json({success: true, user: req.user});
         });
 
+    router.post('/check-auth', (req, res) => {
+        res.json({success: req.isAuthenticated(), user: req.user});
+    });
 
-    router.get('/logout', (req, res) => {
+    router.post('/logout', (req, res) => {
         if (!req.isAuthenticated())
-            throw this.errors.unauthorized;
+            throw errors.unauthorized;
 
         logger.trace(`passport/logout -> ${req.user.email}[${req.user.role}] logout from system`);
         req.logout();

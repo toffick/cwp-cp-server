@@ -1,6 +1,7 @@
 {
   "app": {
-    "port": 9001
+    "port": 9001,
+    "cors": true
   },
   "db": {
     "name": "cwp-cp-server",

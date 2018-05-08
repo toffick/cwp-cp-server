@@ -34,15 +34,6 @@ const associateItemsMM = async (sourceItems, targetItems, associateCount, modelT
     }
 };
 
-const associateItemsNM = async (sourceItems, targetItems, modelType) => {
-    for (let i = 0; i < targetItems.length; i++) {
-        for (let y = 0; y <= i; y++) {
-            const newID = ((i + 2) * 11) % sourceItems.length;
-            await sourceItems[newID][`add${modelType}`](targetItems[i]);
-        }
-    }
-};
-
 const setRating = async (reviews, db) => {
     for (let i = 0; i < reviews.length; i++) {
         const {movieId, mark} = reviews[i];

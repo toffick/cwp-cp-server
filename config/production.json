@@ -1,4 +1,7 @@
 {
+  "app": {
+    "cors": false
+  },
   "db": {
     "name": "da41jkmte132u9",
     "user": "erdtmacsrsrcpw",

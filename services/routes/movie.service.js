@@ -16,12 +16,12 @@ class MovieService extends CrudService {
         if (isNaN(movieId)) {
             throw this.errors.invalidId;
         }
-
+//TODO attributes
         const item = await this.repository.find({
             where: {id: movieId},
             include: [{
                 model: this.genresRepository,
-                as: 'genres'
+                as: 'genres',
             }, {
                 model: this.actorsRepository,
                 as: 'actors'

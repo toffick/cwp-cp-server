@@ -1,5 +1,12 @@
 [
   {
+    "name": "1",
+    "email": "1",
+    "password": "1",
+    "role": "ADMIN",
+    "isVerified": true
+  },
+  {
     "name": "Kolya",
     "email": "myemail@gmail.com",
     "password": "123",

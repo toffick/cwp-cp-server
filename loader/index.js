@@ -5,7 +5,7 @@ logger.level = 'trace';
 
 module.exports = () => {
     const container = createContainer();
-
+//TODO map (userID => {remoteAddress, loginTimestamp, ~sessionID})
     container.loadModules([
         ['services/**/*.js', {register: asClass}],
         ['controllers/routes/*.js', {register: asClass}],

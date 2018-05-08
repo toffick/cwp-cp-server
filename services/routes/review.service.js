@@ -14,7 +14,7 @@ class ReviewService extends CrudService {
         this._validateBySchema(data);
 
         const item = await this.repository.create({...data, userId});
-
+//TODO add transaction
         const {movieId, mark} = data;
         await this.ratingService.evaluate(movieId, mark);
 

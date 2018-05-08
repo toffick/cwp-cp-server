@@ -29,7 +29,7 @@ const errors = {
         code: 'unauthorized',
         status: 401
     },
-    accountNotVerified:{
+    accountNotVerified: {
         message: 'Please confirm your account by link in email',
         code: 'account not verified',
         status: 403
@@ -39,7 +39,12 @@ const errors = {
         code: 'access_denied',
         status: 403
     },
-    undefinedRole:{
+    wrongCredentials: {
+        message: 'Email or password are wrong',
+        code: 'wrong_credentials',
+        status: 403
+    },
+    undefinedRole: {
         message: 'Role not fount',
         code: 'role_not_found',
         status: 404
@@ -47,11 +52,6 @@ const errors = {
     notFound: {
         message: 'Entity not found',
         code: 'entity_not_found',
-        status: 404
-    },
-    wrongCredentials: {
-        message: 'Email or password are wrong',
-        code: 'wrong_credentials',
         status: 404
     },
     methodNotAllowed: {
@@ -81,6 +81,6 @@ express.response.error = function (error) {
         error = errors.customError(error.toString(), 'server_error', 500)
     }
 
-    this.status(error.status).json(error);
+    this.status(error.status).json({success: false, error});
 };
 

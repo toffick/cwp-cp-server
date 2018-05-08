@@ -8,7 +8,8 @@ module.exports = [
                 userProtected: false,
                 role: 'ADMIN',
                 methods: [
-                    'POST']
+                    'POST'
+                ]
             }
         ]
     },
