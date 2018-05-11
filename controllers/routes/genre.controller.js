@@ -1,4 +1,5 @@
 const CrudController = require('./crud.controller');
+const sender = require('../../helpers/sender.helper');
 
 class GenreController extends CrudController {
     constructor({genreService, cacheService}) {
@@ -12,7 +13,7 @@ class GenreController extends CrudController {
     }
 
     async getMovies(req, res) {
-        res.json(await this.service.getMovies(req.params.genreId));
+        sender(res, await this.service.getMovies(req.params.genreId))
     }
 
     async popularGenre() {

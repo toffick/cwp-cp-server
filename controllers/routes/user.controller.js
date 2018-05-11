@@ -1,4 +1,5 @@
 const CrudController = require('./crud.controller');
+const sender = require('../../helpers/sender.helper');
 
 class UserController extends CrudController {
     constructor({userService, reviewController, cacheService}) {
@@ -16,11 +17,11 @@ class UserController extends CrudController {
     }
 
     async changeRole(req, res) {
-        res.json(await this.service.changeRole(req.params.userId, req.body.role));
+        sender(res, await this.service.changeRole(req.params.userId, req.body.role))
     }
 
     async getProfile(req, res) {
-        res.json(await this.service.getProfile(req.params.userId));
+        sender(res, await this.service.getProfile(req.params.userId))
     }
 
 }

@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const wrap = require('../helpers/wrap.helper');
+const sender = require('../helpers/sender.helper');
 
 //TODO validation
 module.exports = ({authenticatorService, logger, errors}) => {
@@ -8,23 +9,27 @@ module.exports = ({authenticatorService, logger, errors}) => {
     router.post('/registration', wrap(async (req, res) => {
         const serverPath = req.protocol + '://' + req.get('host');
 
-        res.json(await authenticatorService.registration(req.body, serverPath));
+        sender(res, await authenticatorService.registration(req.body, serverPath))
     }));
 
     router.get('/confirm', wrap(async (req, res) => {
         if (!req.query.token) {
-            res.json({success: false, message: "Set token"});
+            sender(res, {message: "Set token"}, 405);
             return;
         }
 
-        res.json(await authenticatorService.confirmRegistration(req.query.token));
+        const result = await authenticatorService.confirmRegistration(req.query.token);
+        if (result.success)
+            res.redirect('/');
+        else
+            sender(res,result);
     }));
 
     router.post('/login',
         authenticatorService.login(),
         (req, res) => {
             logger.trace(`passport/login -> ${req.user.email}[${req.user.role}] authenticated`);
-            res.json({success: true, user: req.user});
+            sender(res,{user: req.user});
         });
 
     router.post('/check-auth', (req, res) => {
@@ -37,7 +42,7 @@ module.exports = ({authenticatorService, logger, errors}) => {
 
         logger.trace(`passport/logout -> ${req.user.email}[${req.user.role}] logout from system`);
         req.logout();
-        res.json({success: true});
+        sender(res);
     });
 
     return router;

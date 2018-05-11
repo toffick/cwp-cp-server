@@ -1,4 +1,5 @@
 const CrudController = require('./crud.controller');
+const sender = require('../../helpers/sender.helper');
 
 class ReviewController extends CrudController {
     constructor({reviewService, cacheService}) {
@@ -8,7 +9,7 @@ class ReviewController extends CrudController {
     }
 
     async create(req, res) {
-        res.json(await this.service.create(req.body, req.user.id));
+        sender(res, await this.service.create(req.body, req.user.id))
     }
 }
 
