@@ -30,13 +30,13 @@ class CrudController {
 
     async readAll(req, res) {
         const data = await this.service.readChunk(req.query);
-        this.cacheService.set(req, data);
+        this.cacheService.set(req, {success: true, payload: data});
         sender(res, data);
     }
 
     async read(req, res) {
         const data = await this.service.read(req.params[this.paramName]);
-        this.cacheService.set(req, data);
+        this.cacheService.set(req, {success: true, payload: data});
         sender(res, data);
     }
 

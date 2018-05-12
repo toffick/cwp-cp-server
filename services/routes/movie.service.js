@@ -1,4 +1,5 @@
 const CrudService = require('./crud.service');
+const getPagination = require('../../helpers/pagination.helper');
 
 class MovieService extends CrudService {
     constructor({context, movieSchema, errors}) {
@@ -38,14 +39,19 @@ class MovieService extends CrudService {
         return item;
     }
 
-    readChunk(query) {
+    async readChunk(query) {
         const findOptions = this._normalizeOptions(query);
-
-        return this.repository.findAll({
+        const {rows: movies, count} = await this.repository.findAndCountAll({
                 ...findOptions,
                 include: [{model: this.genresRepository, as: 'genres', attributes: ['name']}]
             }
-        )
+        );
+        const pagination = getPagination(count, Number(query.page) || this.defaults.readChunk.page, findOptions.limit);
+
+        return {
+            movies,
+            meta: {pagination}
+        }
     }
 }
 

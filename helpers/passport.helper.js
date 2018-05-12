@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-module.exports = ({context, errors, roles, logger}) => {
+module.exports = ({context, errors, roles}) => {
 
     const userRepository = context['Users'];
 

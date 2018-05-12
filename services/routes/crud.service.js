@@ -10,9 +10,10 @@ class CrudService {
         this.defaults = {
             readChunk: {
                 limit: 5,
-                offset: 0,
+                page: 1,
                 sortOrder: 'asc',
-                sortField: 'id'
+                sortField: 'id',
+                distinct: true
             },
             allowedFilterProps: ['id']
         };
@@ -86,17 +87,24 @@ class CrudService {
     _normalizeOptions(query) {
 
         let limit = Number(query.limit) || this.defaults.readChunk.limit;
-        let offset = Number(query.offset) || this.defaults.readChunk.offset;
+        let page = Number(query.page) || this.defaults.readChunk.page;
 
-        const options = {
+        if (page < 1) {
+            page = this.defaults.readChunk.page;
+        }
+
+        if (limit < 1) {
+            limit = this.defaults.readChunk.limit;
+        }
+        const offset = (page - 1) * limit;
+
+        return {
             ...this.defaults.readChunk,
             limit,
             offset,
             where: query.filter ? sqs.find(query.filter, this.defaults.allowedFilterProps) : {},
             order: query.sort ? sqs.sort(query.sort) : []
         };
-
-        return options;
     }
 }
 
