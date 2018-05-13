@@ -1,65 +1,65 @@
 [
   {
-    "name": "Comedy"
+    "name": "comedy"
   },
   {
-    "name": "Fantasy"
+    "name": "fantasy"
   },
   {
-    "name": "Crime"
+    "name": "crime"
   },
   {
-    "name": "Drama"
+    "name": "drama"
   },
   {
-    "name": "Music"
+    "name": "music"
   },
   {
-    "name": "Adventure"
+    "name": "adventure"
   },
   {
-    "name": "History"
+    "name": "history"
   },
   {
-    "name": "Thriller"
+    "name": "thriller"
   },
   {
-    "name": "Animation"
+    "name": "animation"
   },
   {
-    "name": "Family"
+    "name": "family"
   },
   {
-    "name": "Mystery"
+    "name": "mystery"
   },
   {
-    "name": "Biography"
+    "name": "biography"
   },
   {
-    "name": "Action"
+    "name": "action"
   },
   {
-    "name": "Film-Noir"
+    "name": "film-noir"
   },
   {
-    "name": "Romance"
+    "name": "romance"
   },
   {
-    "name": "Sci-Fi"
+    "name": "sci-Fi"
   },
   {
-    "name": "War"
+    "name": "war"
   },
   {
-    "name": "Western"
+    "name": "western"
   },
   {
-    "name": "Horror"
+    "name": "horror"
   },
   {
-    "name": "Musical"
+    "name": "musical"
   },
   {
-    "name": "Sport"
+    "name": "sport"
   }
 ]

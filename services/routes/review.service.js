@@ -7,6 +7,7 @@ class ReviewService extends CrudService {
         this.moviesRepository = context['Movies'];
         this.ratingService = ratingService;
 
+        this.defaults.readChunk.sortField = 'datestamp';
         this.defaults.allowedFilterProps = ['datestamp', 'mark'];
     }
 

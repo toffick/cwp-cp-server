@@ -8,7 +8,7 @@ class MovieService extends CrudService {
         this.genresRepository = context['Genres'];
         this.reviewsRepository = context['Reviews'];
 
-        this.defaults.allowedFilterProps = ['title', 'year', 'runtime', 'director', 'ratingCount', 'rating'];
+        this.defaults.allowedFilterProps = ['title', 'year', 'runtime', 'director', 'ratingCount', 'rating', 'genres.name'];
     }
 
     async read(movieId) {
