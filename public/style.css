@@ -1,3 +1,89 @@
+.input-range__slider {
+  appearance: none;
+  background: #3f51b5;
+  border: 1px solid #3f51b5;
+  border-radius: 100%;
+  cursor: pointer;
+  display: block;
+  height: 1rem;
+  margin-left: -0.5rem;
+  margin-top: -0.65rem;
+  outline: none;
+  position: absolute;
+  top: 50%;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  width: 1rem; }
+
+.input-range__slider:active {
+  transform: scale(1.3); }
+
+.input-range__slider:focus {
+  box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2); }
+
+.input-range--disabled .input-range__slider {
+  background: #cccccc;
+  border: 1px solid #cccccc;
+  box-shadow: none;
+  transform: none; }
+
+.input-range__slider-container {
+  transition: left 0.3s ease-out; }
+
+.input-range__label {
+  color: #aaaaaa;
+  font-family: "Helvetica Neue", san-serif;
+  font-size: 0.8rem;
+  transform: translateZ(0);
+  white-space: nowrap; }
+
+.input-range__label--min,
+.input-range__label--max {
+  bottom: -1.4rem;
+  position: absolute; }
+
+.input-range__label--min {
+  left: 0; }
+
+.input-range__label--max {
+  right: 0; }
+
+.input-range__label--value {
+  position: absolute;
+  top: -1.8rem; }
+
+.input-range__label-container {
+  left: -50%;
+  position: relative; }
+
+.input-range__label--max .input-range__label-container {
+  left: 50%; }
+
+.input-range__track {
+  background: #eeeeee;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  display: block;
+  height: 0.3rem;
+  position: relative;
+  transition: left 0.3s ease-out, width 0.3s ease-out; }
+
+.input-range--disabled .input-range__track {
+  background: #eeeeee; }
+
+.input-range__track--background {
+  left: 0;
+  margin-top: -0.15rem;
+  position: absolute;
+  right: 0;
+  top: 50%; }
+
+.input-range__track--active {
+  background: #3f51b5; }
+
+.input-range {
+  height: 1rem;
+  position: relative;
+  width: 100%; }
 .Toastify__toast-container {
   z-index: 9999;
   position: fixed;
@@ -544,7 +630,8 @@ input:focus {
   min-width: 100%;
   padding: 0 2vh 0 2vh;
   background: #23ddde;
-  position: fixed; }
+  position: fixed;
+  z-index: 1; }
   .layout__header .buttons {
     display: flex;
     align-items: center;
@@ -573,7 +660,7 @@ input:focus {
     color: #FFFFFF; }
     .layout__header .item:hover {
       cursor: pointer;
-      background: #00b1d9; }
+      background: #005266; }
 
 .layout__footer {
   display: flex;
@@ -589,49 +676,113 @@ input:focus {
   .content .inner {
     display: flex;
     justify-content: center;
-    min-width: 80%;
     max-width: 80%;
-    padding-top: 3vh;
-    padding-bottom: 3vh;
-    background: #c6d9d0; }
+    min-width: 80%;
+    padding: 3vh 0 3vh 0; }
 
 .movies_container {
   display: flex;
   justify-content: stretch;
   min-height: 100%;
   width: 100%; }
+  .movies_container hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #23ddde;
+    margin: 1em 0;
+    padding: 0; }
   .movies_container .filter {
-    flex-grow: 1;
-    min-width: 15vh;
+    display: flex;
+    min-width: 30vh;
     height: 30vh;
-    background: #4cd964;
-    margin-right: 2vh; }
+    margin-right: 2vh;
+    margin-top: 2vh;
+    padding: 2vh;
+    justify-content: space-around;
+    border: 1px solid #23ddde; }
+    .movies_container .filter .genres_list ul {
+      list-style-type: none;
+      -webkit-padding-start: 0; }
+      .movies_container .filter .genres_list ul li:not(:last-child) {
+        margin-bottom: 4px; }
+    .movies_container .filter .genres_list .item_active {
+      font-weight: bold;
+      cursor: pointer; }
+    .movies_container .filter .genres_list .item_inactive {
+      font-weight: bold;
+      cursor: pointer;
+      color: #7e8883;
+      opacity: 0.7; }
+      .movies_container .filter .genres_list .item_inactive:hover {
+        color: #111111;
+        opacity: 1; }
+    .movies_container .filter .filter_options {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center; }
+      .movies_container .filter .filter_options .range_inputs_item {
+        padding-bottom: 30px;
+        width: 25vh;
+        text-align: center;
+        position: inherit; }
+      .movies_container .filter .filter_options .button {
+        background-color: #23ddde;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        position: inherit;
+        bottom: 0;
+        max-width: 10vh; }
+        .movies_container .filter .filter_options .button:hover {
+          cursor: pointer;
+          background-color: #005266; }
   .movies_container .movies_list {
-    flex-grow: 4; }
+    width: 100%; }
     .movies_container .movies_list ul {
       margin: 0;
       padding: 0;
       list-style-type: none; }
-      .movies_container .movies_list ul li:not(:last-child) {
-        margin-bottom: 2vh; }
   .movies_container .movies_item {
-    height: 25vh;
     display: flex;
-    background: #c0c1c0;
     padding: 2vh;
-    justify-content: stretch; }
+    justify-content: stretch;
+    border: 2px; }
     .movies_container .movies_item img {
       max-width: 100%;
       max-height: 100%; }
     .movies_container .movies_item .description {
-      padding-left: 2vh; }
+      padding-left: 2vh;
+      width: 100%; }
       .movies_container .movies_item .description .title_rating {
         display: flex;
         justify-content: space-between;
-        left: 0; }
+        align-items: center; }
+        .movies_container .movies_item .description .title_rating_link {
+          text-decoration: none;
+          color: #111111; }
+          .movies_container .movies_item .description .title_rating_link:hover {
+            cursor: pointer;
+            color: #005266; }
         .movies_container .movies_item .description .title_rating h3 {
           margin: 0;
           padding: 0; }
+
+.rating {
+  min-height: 65px;
+  min-width: 65px;
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  border: 2px solid #23ddde;
+  line-height: 65px;
+  text-align: center;
+  font-weight: bold; }
 
 html, body {
   margin: 0;
