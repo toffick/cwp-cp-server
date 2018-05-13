@@ -1,9 +1,4 @@
 module.exports = (Sequelize, sequelize) => sequelize.define('movies', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
     title: Sequelize.STRING(256),
     year: Sequelize.INTEGER,
     runtime: Sequelize.INTEGER,
