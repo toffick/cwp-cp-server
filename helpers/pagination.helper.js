@@ -20,8 +20,16 @@ module.exports = (arrayLength, page, limit) => {
         pagination.prev = page - 1;
     }
 
+    if (page > 2) {
+        pagination.prevprev = page - 2;
+    }
+
     if (end < arrayLength) {
         pagination.next = page + 1;
+    }
+
+    if (end + limit < arrayLength) {
+        pagination.nextnext = page + 2;
     }
 
     if (limit !== arrayLength) {
