@@ -40,7 +40,7 @@ const errors = {
         status: 403
     },
     wrongCredentials: {
-        message: 'Email or password are wrong',
+        message: 'Email or password is incorrect',
         code: 'wrong_credentials',
         status: 403
     },
@@ -59,14 +59,14 @@ const errors = {
         code: 'method_not_allowed',
         status: 405
     },
-    validError: (msg) => ({
-        msg,
+    validError: (message) => ({
+	    message,
         code: 'validate_error',
         status: 400
     }),
-    customError: (msg, code, status) =>
+    customError: (message, code, status) =>
         ({
-            msg,
+	        message,
             code,
             status
         })
@@ -81,6 +81,6 @@ express.response.error = function (error) {
         error = errors.customError(error.toString(), 'server_error', 500)
     }
 
-    this.status(error.status).json({success: false, error});
+	this.status(error.status).json({success: false, error});
 };
 

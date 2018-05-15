@@ -13,7 +13,7 @@ module.exports = (arrayLength, page, limit) => {
         pagination.current = page;
         pagination.first = 1;
         pagination.last = 1;
-        return {pagination};
+        return pagination;
     }
 
     if (page > 1) {
