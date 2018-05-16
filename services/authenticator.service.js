@@ -10,7 +10,7 @@ class Authenticator {
     }
 
     login() {
-        return this.passport.authenticate('local', {failureRedirect: '/login'});
+        return this.passport.authenticate('local', {failureRedirect: '/sign-in'});
     }
 
     async confirmRegistration(token) {
@@ -38,7 +38,7 @@ class Authenticator {
     }
 
     async registration(data, serverPath) {
-        const user = await this.userService.readOne({email: data.email});
+        const user = await this.userService.readOne({email: data.email.toLowerCase()});
         if (user)
             throw this.errors.badRegistration;
 

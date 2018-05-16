@@ -29,7 +29,7 @@ module.exports = ({authenticatorService, logger, errors}) => {
         authenticatorService.login(),
         (req, res) => {
             logger.trace(`passport/login -> ${req.user.email}[${req.user.role}] authenticated`);
-            sender(res,{id: req.user.id, role: req.user.role});
+            sender(res,{id: req.user.id, role: req.user.role, name: req.user.name});
         });
 
     router.post('/check-auth', (req, res) => {
