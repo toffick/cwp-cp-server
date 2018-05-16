@@ -695,13 +695,14 @@ input:focus {
     padding: 0; }
   .movies_container .filter {
     display: flex;
-    min-width: 30vh;
-    height: 30vh;
+    width: auto;
+    height: auto;
     margin-right: 2vh;
     margin-top: 2vh;
-    padding: 2vh;
+    padding: 4vh;
     justify-content: space-around;
-    border: 1px solid #23ddde; }
+    border: 1px solid #23ddde;
+    position: fixed; }
     .movies_container .filter .genres_list ul {
       list-style-type: none;
       -webkit-padding-start: 0; }
@@ -723,6 +724,13 @@ input:focus {
       flex-direction: column;
       justify-content: space-between;
       align-items: center; }
+      .movies_container .filter .filter_options .sorts {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 120%; }
+        .movies_container .filter .filter_options .sorts_item {
+          display: flex;
+          justify-content: space-between; }
       .movies_container .filter .filter_options .range_inputs_item {
         padding-bottom: 30px;
         width: 25vh;
@@ -744,7 +752,8 @@ input:focus {
           cursor: pointer;
           background-color: #005266; }
   .movies_container .movies_list {
-    width: 100%; }
+    width: 100%;
+    padding-left: 40vh; }
     .movies_container .movies_list ul {
       margin: 0;
       padding: 0;
