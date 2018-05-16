@@ -8,7 +8,7 @@ const tempDataToDb = require('./tempData/tempDataToDb.helper');
     const db = container.resolve('context');
     const logger = container.resolve('logger');
 
-    const forceFl = false;
+    const forceFl = true;
     try {
         await db.sequelize.sync({force: forceFl});
         logger.info(`Database successfully created`);
@@ -25,3 +25,5 @@ const tempDataToDb = require('./tempData/tempDataToDb.helper');
         logger.error(`start server error: ${e}`);
     }
 })();
+
+//p1RqQB!W3X(zs)Sk
