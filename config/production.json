@@ -9,14 +9,11 @@
     "options": {
       "host": "sql7.freemysqlhosting.net",
       "port": 3306,
-      "dialect": "postgres",
+      "dialect": "mysql",
       "timestamps": false,
       "paranoid": false,
       "freezeTableName": true,
       "logging": false,
-      "dialectOptions": {
-        "ssl": true
-      },
       "define": {
         "timestamps": false,
         "paranoid": false,
