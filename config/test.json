@@ -1,0 +1,24 @@
+{
+  "app": {
+    "port": 9001,
+    "cors": true
+  },
+  "db": {
+    "name": "cwp-cp-server-test",
+    "user": "root",
+    "password": "root",
+    "options": {
+      "dialect": "mysql",
+      "host": "localhost",
+      "timestamps": false,
+      "paranoid": false,
+      "freezeTableName": true,
+      "logging": false,
+      "define": {
+        "timestamps": false,
+        "paranoid": false,
+        "freezeTableName": true
+      }
+    }
+  }
+}

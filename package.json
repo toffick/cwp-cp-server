@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha",
-    "apidoc":"apidoc -i controllers/ -o doc/ -x node_modules/"
+    "apidoc": "apidoc -i controllers/ -o doc/ -x node_modules/",
+    "test": " set NODE_ENV=test& mocha \"./test/**/*.spec.js\""
   },
   "repository": {
     "type": "git",
@@ -42,10 +42,12 @@
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.6",
-    "sequelize-querystring": "github:toffick/node-sequelize-querystring"
+    "sequelize-querystring": "github:toffick/node-sequelize-querystring",
+    "supertest": "^3.1.0"
   },
   "devDependencies": {
     "apidoc": "^0.17.6",
+    "chai": "^4.1.2",
     "mocha": "^5.1.1",
     "sinon": "^4.5.0"
   }
