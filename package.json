@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha"
+    "test": "mocha",
+    "apidoc":"apidoc -i controllers/ -o doc/ -x node_modules/"
   },
   "repository": {
     "type": "git",

@@ -16,10 +16,24 @@ class UserController extends CrudController {
         this.router.use('/:userId/reviews', reviewController.router);
     }
 
+	/**
+	 * @apiDescription Change user role
+	 * @api {post} /users/:userId/role
+	 *
+	 * @apiGroup ChangeRole
+	 * @apiParam {Number} userId user id
+	 * @apiParam {Object} role object
+     * @apiPermission ADMIN
+	 */
     async changeRole(req, res) {
         sender(res, await this.service.changeRole(req.params.userId, req.body.role))
     }
-
+	/**
+     * @apiDescription Get user profile info
+	 * @api {get} /users/:userId/profile
+	 * @apiGroup GetUserProfile
+     * @apiParam {Number} userId user id
+	 */
     async getProfile(req, res) {
         sender(res, await this.service.getProfile(req.params.userId))
     }

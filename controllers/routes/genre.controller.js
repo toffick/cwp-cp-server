@@ -12,10 +12,19 @@ class GenreController extends CrudController {
         this.registerRoutes();
     }
 
+
+	/**
+	 * @apiDescription Get all films by current genre
+	 * @api {get} /:genreId/get-movies
+	 *
+	 * @apiGroup GetGenresMovies
+	 * @apiParam {Number} genreId genre id
+	 */
     async getMovies(req, res) {
         sender(res, await this.service.getMovies(req.params.genreId))
     }
 
+    //TODO
     async popularGenre() {
 
     }

@@ -6,6 +6,13 @@ const sender = require('../helpers/sender.helper');
 module.exports = ({authenticatorService, logger, errors}) => {
     const router = Router({mergeParams: true});
 
+	/**
+	 * @apiDescription Register user with role USER
+	 * @api {post} /auth/registration
+	 *
+	 * @apiGroup Registration
+	 * @apiParam {Object} user object
+	 */
     router.post('/registration', wrap(async (req, res) => {
         const serverPath = req.protocol + '://' + req.get('host');
 
@@ -25,6 +32,13 @@ module.exports = ({authenticatorService, logger, errors}) => {
             sender(res,result);
     }));
 
+	/**
+	 * @apiDescription Authentication by email and password
+	 * @api {post} /auth/login
+	 *
+	 * @apiGroup Registration
+	 * @apiParam {Object} loginObj email and password
+	 */
     router.post('/login',
         authenticatorService.login(),
         (req, res) => {
@@ -32,10 +46,22 @@ module.exports = ({authenticatorService, logger, errors}) => {
             sender(res,{id: req.user.id, role: req.user.role, name: req.user.name});
         });
 
+	/**
+	 * @apiDescription Check auth by cookie. return true if there a session by passed cookie
+	 * @api {post} /auth/check-auth
+	 *
+	 * @apiGroup CheckAuth
+	 */
     router.post('/check-auth', (req, res) => {
         res.json({success: req.isAuthenticated(), user: req.user});
     });
 
+	/**
+	 * @apiDescription Destroy session
+	 * @api {post} /auth/logout
+	 *
+	 * @apiGroup Logout
+	 */
     router.post('/logout', (req, res) => {
         if (!req.isAuthenticated())
             throw errors.unauthorized;

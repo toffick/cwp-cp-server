@@ -1,0 +1,9 @@
+{
+  "name": "cwp-cp-server",
+  "version": "1.0.0",
+  "description": "The REST api for web app CinRtgn",
+  "apidoc": {
+    "title": "CinRtgn",
+    "url" : "https://intense-fjord-45806.herokuapp.com/"
+  }
+}

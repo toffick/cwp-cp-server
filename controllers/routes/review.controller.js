@@ -8,6 +8,14 @@ class ReviewController extends CrudController {
         this.registerRoutes();
     }
 
+	/**
+	 * @apiDescription Create review
+	 * @api {post} /users/:userId/reviews
+	 *
+	 * @apiGroup CreateReview
+	 * @apiParam {Number} userId id
+	 * @apiParam {Object} review object
+	 */
     async create(req, res) {
         sender(res, await this.service.create(req.body, req.user.id))
     }

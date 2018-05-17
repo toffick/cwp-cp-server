@@ -12,6 +12,13 @@ class ActorController extends CrudController {
         this.registerRoutes();
     }
 
+	/**
+	 * @apiDescription Get the list of films in which the actor participates
+	 * @api {get} /:actorId/get-movies
+	 *
+	 * @apiGroup GetActorMovies
+	 * @apiParam {Number} actorId actor id
+	 */
     async getMovies(req, res) {
         sender(res, await this.service.getMovies(req.params.actorId))
     }
