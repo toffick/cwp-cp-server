@@ -3,17 +3,20 @@
     "cors": false
   },
   "db": {
-    "name": "sql7238369",
-    "user": "sql7238369",
-    "password": "ynkK7LNvhw",
+    "name": "d5e3gudgdo7ua7",
+    "user": "lclmxvwebzchnx",
+    "password": "09bf894b2943d248357d2f16ed7dffceff154e3c142e3d34b64ba7d9e52b9f3c",
     "options": {
-      "host": "sql7.freemysqlhosting.net",
-      "port": 3306,
-      "dialect": "mysql",
+      "host": "ec2-54-221-192-231.compute-1.amazonaws.com",
+      "port": 5432,
+      "dialect": "postgres",
       "timestamps": false,
       "paranoid": false,
       "freezeTableName": true,
       "logging": false,
+      "dialectOptions": {
+        "ssl": true
+      },
       "define": {
         "timestamps": false,
         "paranoid": false,
