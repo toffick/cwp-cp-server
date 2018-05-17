@@ -16,7 +16,7 @@ class UserService extends CrudService {
 	async create(data) {
 		this._validateBySchema(data);
 
-		data.roleLevel = 1;
+		data.role = 'USER';
 		const item = await this.repository.create(data);
 
 		return item.get({plain: true});
