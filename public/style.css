@@ -668,12 +668,13 @@ input:focus {
   align-items: stretch;
   background: rgba(35, 221, 222, 0.31);
   padding: 2vh 15vh 2vh 15vh;
-  font-weight: 600; }
+  font-weight: 600;
+  bottom: 0; }
 
 .content {
   display: flex;
   justify-content: center;
-  min-height: 85.35vh; }
+  min-height: 87vh; }
   .content .inner {
     display: flex;
     justify-content: center;
@@ -850,8 +851,8 @@ input:focus {
 
 .review_container {
   display: flex;
-  flex-direction: column;
-  align-items: center; }
+  align-items: top;
+  justify-content: space-between; }
   .review_container hr {
     display: block;
     height: 1px;
