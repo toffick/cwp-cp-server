@@ -2,7 +2,7 @@ const users = require('./users');
 const movies = require('./movies');
 const genres = require('./genres');
 const actors = require('./actors');
-const reviews = require('./reviews');
+const reviews = require('./reviews_new');
 
 const {newRating} = require('../helpers/rating.helper');
 

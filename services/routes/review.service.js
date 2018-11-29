@@ -18,14 +18,13 @@ class ReviewService extends CrudService {
 			data.datestamp = Date.now();
 
 		const item = await this.repository.create({...data, userId});
-//TODO add transaction
+
 		const {movieId, mark} = data;
 		await this.ratingService.evaluate(movieId, mark);
 
 		return item.get({plain: true});
 	}
 
-//TODO update
 }
 
 module.exports = ReviewService;

@@ -1,5 +1,13 @@
 const {Router} = require('express');
 
+/**
+ *
+ * @param {UserController} userController
+ * @param {ActorController} actorController
+ * @param {MovieController} movieController
+ * @param {GenreController} genreController
+ * @return {*}
+ */
 module.exports = ({userController, actorController, movieController, genreController}) => {
     const router = Router({mergeParams: true});
 

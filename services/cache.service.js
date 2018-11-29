@@ -3,10 +3,12 @@ const hash = require('object-hash');
 
 class CacheService {
     constructor() {
-        this.cache = lru({ max: 5, maxAge: 1000 * 30 });
+        //TODO
+	    this.cache = lru({ max: 5, maxAge: 1000 * 30 });
     }
 
     async set(req, data) {
+        //TODO можно не хэшировать
         this.cache.set(hash(`${req.method}${req.originalUrl}`), data);
     }
 

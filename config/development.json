@@ -13,7 +13,7 @@
       "timestamps": false,
       "paranoid": false,
       "freezeTableName": true,
-      "logging": false,
+      "logging": true,
       "define": {
         "timestamps": false,
         "paranoid": false,
