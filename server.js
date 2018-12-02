@@ -8,6 +8,7 @@ const tempDataToDb = require('./tempData/tempDataToDb.helper');
     const db = container.resolve('context');
     const logger = container.resolve('logger');
 
+    // TODO аккуратно ептыль
     const forceFl = false;
     try {
         await db.sequelize.sync({force: forceFl});

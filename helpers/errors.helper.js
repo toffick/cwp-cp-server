@@ -78,7 +78,7 @@ const express = require('express');
 
 express.response.error = function (error) {
     if (!error.code) {
-        error = errors.customError(error.toString(), 'bad_request', 400)
+        error = errors.customError('Bad request', 'bad_request', 400)
     }
 
 	this.status(error.status).json({success: false, error});
