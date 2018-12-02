@@ -10,7 +10,9 @@ module.exports = () => {
         ['services/**/*.js', {register: asClass}],
         ['controllers/routes/*.js', {register: asClass}],
         ['controllers/*.js', {register: asFunction}],
-        ['global-controllers/*.js', {register: asFunction}],
+	    ['global-middlewares/*.js', {register: asFunction}],
+	    ['middlewares/*.js', {register: asFunction}],
+	    ['repositories/*.js', {register: asClass}],
         ['schemas/*.js', {register: asFunction}]
     ], {
         formatName: 'camelCase',
@@ -21,7 +23,8 @@ module.exports = () => {
 
     container.register({
         passport: asFunction(require('../helpers/passport.helper')),
-        context: asFunction(require('../db'))
+	    context: asFunction(require('../db/main/index')),
+	    contextAudit: asFunction(require('../db/audit/index'))
     });
 
     container.register({

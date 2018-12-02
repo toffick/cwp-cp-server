@@ -1,4 +1,4 @@
-const {users, movies, genres, actors, reviews} = require('./models');
+const {users, movies, genres, actors, reviews} = require('./models/index');
 const config = require('config');
 
 module.exports = ({Sequelize}) => {

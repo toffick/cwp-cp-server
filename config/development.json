@@ -20,5 +20,23 @@
         "freezeTableName": true
       }
     }
+  },
+  "db_audit": {
+    "name": "cwp-cp-server-audit",
+    "user": "root",
+    "password": "root",
+    "options": {
+      "dialect": "mysql",
+      "host": "localhost",
+      "timestamps": false,
+      "paranoid": false,
+      "freezeTableName": true,
+      "logging": true,
+      "define": {
+        "timestamps": false,
+        "paranoid": false,
+        "freezeTableName": true
+      }
+    }
   }
 }

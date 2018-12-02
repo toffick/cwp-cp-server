@@ -5,13 +5,17 @@ const server = require('./appManager')(container);
 const tempDataToDb = require('./tempData/tempDataToDb.helper');
 
 (async () => {
-    const db = container.resolve('context');
+	const db = container.resolve('context');
+	const dbAudit = container.resolve('contextAudit');
     const logger = container.resolve('logger');
 
     // TODO аккуратно ептыль
-    const forceFl = false;
+	const forceFl = false;
+	const forceFl_audit = false;
     try {
-        await db.sequelize.sync({force: forceFl});
+	    await db.sequelize.sync({force: forceFl});
+	    await dbAudit.sequelize.sync({force: forceFl_audit});
+
         logger.info(`Database successfully created`);
 
         if (forceFl) {

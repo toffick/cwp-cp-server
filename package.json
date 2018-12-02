@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/toffick/cwp-cp-server#readme",
   "dependencies": {
+    "async": "^2.6.1",
     "awilix": "^3.0.7",
     "babel": "^6.23.0",
     "bcryptjs": "^2.4.3",

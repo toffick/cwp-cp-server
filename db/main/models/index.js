@@ -5,9 +5,9 @@ const actors = require('./actors');
 const reviews = require('./reviews');
 
 module.exports = {
-    users,
-    movies,
-    genres,
-    reviews,
-    actors
+	users,
+	movies,
+	genres,
+	reviews,
+	actors
 };

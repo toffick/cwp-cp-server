@@ -2,12 +2,14 @@ const CrudService = require('./crud.service');
 const getPagination = require('../../helpers/pagination.helper');
 
 class MovieService extends CrudService {
-	constructor({context, movieSchema, errors}) {
+	constructor({context, movieSchema, errors, statisticsRepository}) {
 		super(context['Movies'], movieSchema, errors);
 		this.actorsRepository = context['Actors'];
 		this.genresRepository = context['Genres'];
 		this.reviewsRepository = context['Reviews'];
 		this.usersRepository = context['Users'];
+
+		this.statisticsRepository = statisticsRepository;
 
 		this.defaults.allowedFilterProps = ['title', 'year', 'runtime', 'director', 'ratingCount', 'rating', 'genres.name'];
 	}
