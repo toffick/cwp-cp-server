@@ -1,6 +1,8 @@
 class StatisticsRepository {
-	constructor({contextAudit}) {
+	constructor({contextAudit, context}) {
 		this.genreStatisticsModel = contextAudit['GenreStatistics'];
+		this.moviesModel = context['Movies'];
+		this.genresRepository = context['Genres'];
 	}
 
 	/**
@@ -18,6 +20,27 @@ class StatisticsRepository {
 					return this.genreStatisticsModel.create({userId, genreId});
 				}
 			});
+	}
+
+	getUserGenres(userId) {
+		return this.genreStatisticsModel
+			.findAll({
+				where: {userId},
+				order: [['count', 'DESC']],
+				limit: 5,
+				raw: true,
+				attributes: ['genreId', 'count']
+			})
+	}
+
+	async getMoviesByGenre(genreId) {
+		const genreItem = await this.genresRepository.findOne({where: {id: genreId}});
+
+		if(!genreItem){
+			return null;
+		}
+
+		return genreItem.getMovies({raw: true});
 	}
 
 }

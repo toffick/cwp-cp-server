@@ -1,5 +1,6 @@
 const {createContainer, asClass, asValue, asFunction, Lifetime} = require('awilix');
 const logger = require('log4js').getLogger();
+const config = require('config');
 
 logger.level = 'trace';
 
@@ -29,7 +30,8 @@ module.exports = () => {
 
     container.register({
         errors: asValue(require('../helpers/errors.helper')),
-        logger: asValue(logger),
+	    logger: asValue(logger),
+	    config: asValue(config),
         Sequelize: asValue(require('sequelize')),
         roles: asValue(require('../helpers/roles.helper')),
     });

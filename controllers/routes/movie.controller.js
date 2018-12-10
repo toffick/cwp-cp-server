@@ -8,7 +8,7 @@ class MovieController extends CrudController {
 	 * @param {CacheService} cacheService
 	 * @param {UserGenreStatisticsService} userGenreStatisticsService
 	 */
-	constructor({movieService, cacheService, userGenreStatisticsService}) {
+	constructor({movieService, cacheService, userGenreStatisticsService, statisticsGlobal}) {
 		super(movieService, 'movie', cacheService);
 
 		this.userGenreStatisticsService = userGenreStatisticsService;
@@ -17,7 +17,21 @@ class MovieController extends CrudController {
 			{method: 'get', cb: this.read}
 		];
 
+		this.router.use(statisticsGlobal);
+
 		this.registerRoutes();
+	}
+
+
+	async readAll(req, res) {
+		const data = await this.service.readChunk(req.query);
+
+		if(req.recommendations){
+			data.recommendations = req.recommendations
+		}
+
+		this.cacheService.set(req, {success: true, payload: data});
+		sender(res, data);
 	}
 
 	async read(req, res) {

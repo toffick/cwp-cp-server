@@ -33,7 +33,6 @@
       "freezeTableName": true,
       "logging": true,
       "define": {
-        "timestamps": false,
         "paranoid": false,
         "freezeTableName": true
       }

@@ -12,11 +12,12 @@ const tempDataToDb = require('./tempData/tempDataToDb.helper');
     // TODO аккуратно ептыль
 	const forceFl = false;
 	const forceFl_audit = false;
+
     try {
 	    await db.sequelize.sync({force: forceFl});
 	    await dbAudit.sequelize.sync({force: forceFl_audit});
 
-        logger.info(`Database successfully created`);
+        logger.info(`Database connections was established`);
 
         if (forceFl) {
             await tempDataToDb(db);

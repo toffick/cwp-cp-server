@@ -23,5 +23,6 @@
       "user": "kin4ikrating@gmail.com",
       "pass": "qf2BzWoGTIBToQbu"
     }
-  }
+  },
+  "recommendationsUpdateTimeout": 1800
 }

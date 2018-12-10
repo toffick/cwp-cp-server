@@ -4,7 +4,7 @@ const sender = require('../helpers/sender.helper');
 
 //TODO validation
 module.exports = ({authenticatorService, logger, errors}) => {
-    const router = Router({mergeParams: true});
+	const router = Router({mergeParams: true});
 
 	/**
 	 * @apiDescription Register user with role USER
@@ -13,24 +13,24 @@ module.exports = ({authenticatorService, logger, errors}) => {
 	 * @apiGroup Registration
 	 * @apiParam {Object} user object
 	 */
-    router.post('/registration', wrap(async (req, res) => {
-        const serverPath = req.protocol + '://' + req.get('host');
+	router.post('/registration', wrap(async (req, res) => {
+		const serverPath = req.protocol + '://' + req.get('host');
 
-        sender(res, await authenticatorService.registration(req.body, serverPath))
-    }));
+		sender(res, await authenticatorService.registration(req.body, serverPath))
+	}));
 
-    router.get('/confirm', wrap(async (req, res) => {
-        if (!req.query.token) {
-            sender(res, {message: "Set token"}, 405);
-            return;
-        }
+	router.get('/confirm', wrap(async (req, res) => {
+		if (!req.query.token) {
+			sender(res, {message: "Set token"}, 405);
+			return;
+		}
 
-        const result = await authenticatorService.confirmRegistration(req.query.token);
-        if (result.success)
-            res.redirect('/');
-        else
-            sender(res,result);
-    }));
+		const result = await authenticatorService.confirmRegistration(req.query.token);
+		if (result.success)
+			res.redirect('/');
+		else
+			sender(res, result);
+	}));
 
 	/**
 	 * @apiDescription Authentication by email and password
@@ -39,12 +39,12 @@ module.exports = ({authenticatorService, logger, errors}) => {
 	 * @apiGroup Registration
 	 * @apiParam {Object} loginObj email and password
 	 */
-    router.post('/login',
-        authenticatorService.login(),
-        (req, res) => {
-            logger.trace(`passport/login -> ${req.user.email}[${req.user.role}] authenticated`);
-            sender(res,{id: req.user.id, role: req.user.role, name: req.user.name});
-        });
+	router.post('/login',
+		authenticatorService.login(),
+		(req, res) => {
+			logger.trace(`passport/login -> ${req.user.email}[${req.user.role}] authenticated`);
+			sender(res, {id: req.user.id, role: req.user.role, name: req.user.name});
+		});
 
 	/**
 	 * @apiDescription Check auth by cookie. return true if there a session by passed cookie
@@ -52,9 +52,9 @@ module.exports = ({authenticatorService, logger, errors}) => {
 	 *
 	 * @apiGroup CheckAuth
 	 */
-    router.post('/check-auth', (req, res) => {
-        res.json({success: req.isAuthenticated(), user: req.user});
-    });
+	router.post('/check-auth', (req, res) => {
+		res.json({success: req.isAuthenticated(), user: req.user});
+	});
 
 	/**
 	 * @apiDescription Destroy session
@@ -62,14 +62,17 @@ module.exports = ({authenticatorService, logger, errors}) => {
 	 *
 	 * @apiGroup Logout
 	 */
-    router.post('/logout', (req, res) => {
-        if (!req.isAuthenticated())
-            throw errors.unauthorized;
+	router.post('/logout', (req, res) => {
+		if (!req.isAuthenticated())
+			throw errors.unauthorized;
 
-        logger.trace(`passport/logout -> ${req.user.email}[${req.user.role}] logout from system`);
-        req.logout();
-        sender(res);
-    });
+		logger.trace(`passport/logout -> ${req.user.email}[${req.user.role}] logout from system`);
+		res.cookie('lastRecommendationUpdated', Date.now(), {
+			maxAge: 0,
+		});
+		req.logout();
+		sender(res);
+	});
 
-    return router;
+	return router;
 };
