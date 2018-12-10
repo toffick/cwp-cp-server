@@ -1,26 +1,23 @@
 const wrap = require('../helpers/wrap.helper');
 
-module.exports = ({config, userGenreStatisticsService}) => wrap(async (req, res, next) => {
+module.exports = ({config, userGenreStatisticsService, cacheService}) => wrap(async (req, res, next) => {
 
 	const {user} = req;
-	if (user && req.method === 'GET') {
-		const recommendationsUpdateTimeout = config.recommendationsUpdateTimeout;
 
-		const {lru} = req.cookies;
+	if (user) {
+		const cacheString = `recommendations:${user.id}`;
 
-		if (!lru) {
+		let recommendationsByGenres = await cacheService.get(cacheString);
 
-			// const recommendationsByGenres = await userGenreStatisticsService.generateRecommendations(20);
-			const recommendationsByGenres = await userGenreStatisticsService.generateRecommendations(user.id);
-
-			req.recommendations = recommendationsByGenres;
-
-			res.cookie('lru', Date.now(), {
-				maxAge: recommendationsUpdateTimeout * 1000,
-				httpOnly: true
-			});
+		if (!recommendationsByGenres && req.method === 'GET') {
+			recommendationsByGenres = await userGenreStatisticsService.generateRecommendations(user.id);
+			cacheService.set(cacheString, recommendationsByGenres);
 		}
+
+		req.recommendations = recommendationsByGenres;
+
 	}
+
 
 	return next()
 });

@@ -8,17 +8,19 @@ class CacheService {
 	}
 
 	async set(req, data) {
-		let objetString = `${req.method}${req.originalUrl}`;
+		let raw = this._rawStrginSerializator(req);
 
-		if (req.user && req.user.id) {
-			objetString += req.user.id;
-		}
-
-		this.cache.set(hash(objetString), data);
+		this.cache.set(hash(raw), data);
 	}
 
 	async get(req) {
-		return this.cache.get(hash(`${req.method}${req.originalUrl}`));
+		let raw = this._rawStrginSerializator(req);
+
+		return this.cache.get(hash(raw));
+	}
+
+	_rawStrginSerializator(req) {
+		return typeof req === 'string' ? req : `${req.method}${req.originalUrl}${req.user && req.user.id ? req.user.id : ''}`;
 	}
 }
 

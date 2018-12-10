@@ -17,7 +17,7 @@ class ActorController extends CrudController {
 	async readAll(req, res) {
 		const data = await this.service.readChunk(req.query);
 
-		if(req.recomendations){
+		if(req.recommendations){
 			data.recommendations = req.recommendations
 		}
 
