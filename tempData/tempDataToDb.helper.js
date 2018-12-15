@@ -1,5 +1,5 @@
 const users = require('./users');
-const movies = require('./movies');
+const movies = require('./newMovies');
 const genres = require('./genres');
 // const actors = require('./actors');
 const actors = require('./newActors');

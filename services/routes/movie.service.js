@@ -1,14 +1,17 @@
 const CrudService = require('./crud.service');
 const getPagination = require('../../helpers/pagination.helper');
+const {getRandomInRange} = require('../../utils/random.util');
 
 class MovieService extends CrudService {
-	constructor({context, movieSchema, errors}) {
+	constructor({context, movieSchema, errors, Sequelize}) {
 		super(context['Movies'], movieSchema, errors);
 		this.actorsRepository = context['Actors'];
 		this.genresRepository = context['Genres'];
 		this.reviewsRepository = context['Reviews'];
 		this.usersRepository = context['Users'];
 
+		this.connection = context['sequelize'];
+		this.Sequelize = Sequelize;
 		this.defaults.allowedFilterProps = ['title', 'year', 'runtime', 'director', 'ratingCount', 'rating', 'genres.name'];
 	}
 
@@ -61,6 +64,38 @@ class MovieService extends CrudService {
 			meta: {pagination}
 		}
 	}
+
+	async getRandomMovieByCountryAndRating(countries, rating) {
+
+		const whereValues = [];
+
+		if (countries && countries.length) {
+			const countriesArray = countries.split(',');
+			if (countriesArray.length) {
+				whereValues.push({operation: 'country in(?)', value: countriesArray});
+			}
+		}
+
+		if (rating && !isNaN(rating)) {
+			whereValues.push({operation: 'rating >= ?', value: rating});
+		}
+
+		const query = `SELECT * FROM movies ${whereValues.length ? `where ${whereValues.map(({operation}) => operation).join(' and ')}` : ''} ORDER BY RAND() LIMIT 1`;
+
+		const movie = await this.connection.query(query,
+			{replacements: whereValues.map(({value}) => value), type: this.Sequelize.QueryTypes.SELECT}
+		);
+
+		if (!movie || !movie[0]) {
+			throw this.errors.notFound;
+		}
+
+		return {
+			movie: movie[0],
+		}
+
+	}
+
 }
 
 module.exports = MovieService;

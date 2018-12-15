@@ -21,7 +21,6 @@ module.exports = ({Sequelize}) => {
 	Reviews.belongsTo(Users);
 	Reviews.belongsTo(Movies);
 
-
 	return {
         Users,
         Movies,

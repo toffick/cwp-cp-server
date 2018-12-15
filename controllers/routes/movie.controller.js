@@ -13,9 +13,22 @@ class MovieController extends CrudController {
 
 		this.userGenreStatisticsService = userGenreStatisticsService;
 
-		this.routes[`/:${this.paramName}`] = [
-			{method: 'get', cb: this.read}
-		];
+		this.gerRandomMovie = this.gerRandomMovie.bind(this);
+
+		this.routes = {
+			'/random': [
+				{method: 'get', cb: this.gerRandomMovie}
+			],
+			'/': [
+				{method: 'get', cb: this.readAll},
+				{method: 'post', cb: this.create}
+			],
+			[`/:${this.paramName}`]: [
+				{method: 'get', cb: this.read},
+				{method: 'put', cb: this.update},
+				{method: 'delete', cb: this.delete}
+			]
+		};
 
 		this.router.use(statisticsGlobal);
 
@@ -45,6 +58,13 @@ class MovieController extends CrudController {
 		await this.userGenreStatisticsService.updateUserStatistics(data, req.user);
 	}
 
+	async gerRandomMovie(req, res) {
+		const {countries, rating} = req.query;
+
+		const data = await this.service.getRandomMovieByCountryAndRating(countries, rating);
+
+		sender(res, data);
+	}
 
 }
 
