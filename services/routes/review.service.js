@@ -1,10 +1,8 @@
-const {newRating} = require('../../helpers/rating.helper');
 const CrudService = require('./crud.service');
 
 class ReviewService extends CrudService {
 	constructor({context, reviewSchema, errors, ratingService}) {
 		super(context['Reviews'], reviewSchema, errors);
-		this.moviesRepository = context['Movies'];
 		this.ratingService = ratingService;
 
 		this.defaults.readChunk.sortField = 'datestamp';

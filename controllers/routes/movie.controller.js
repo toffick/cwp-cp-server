@@ -51,7 +51,6 @@ class MovieController extends CrudController {
 		const data = await this.service.read(req.params[this.paramName]);
 
 		this.cacheService.set(req, {success: true, payload: data});
-		// TODO rm fixed userId
 
 		sender(res, data);
 
@@ -65,7 +64,11 @@ class MovieController extends CrudController {
 
 		sender(res, data);
 	}
-
+	async create(req, res) {
+		sender(res, await this.service.create(req.body));
+		const key = `GET/api/v1/movies/`;
+		await this.cacheService.del(key);
+	}
 }
 
 module.exports = MovieController;

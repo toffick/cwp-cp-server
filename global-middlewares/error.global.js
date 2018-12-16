@@ -1,3 +1,4 @@
 module.exports =  () => (error, req, res, next) => {
-  res.error(error);
+	console.log(error);
+	res.error(error);
 };

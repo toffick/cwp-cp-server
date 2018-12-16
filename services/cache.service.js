@@ -19,8 +19,15 @@ class CacheService {
 		return this.cache.get(hash(raw));
 	}
 
+	async del(req) {
+		let commonRawKey = this._rawStrginSerializator(req);
+
+		return this.cache.del(hash(commonRawKey));
+	}
+
 	_rawStrginSerializator(req) {
-		return typeof req === 'string' ? req : `${req.method}${req.originalUrl}${req.user && req.user.id ? req.user.id : ''}`;
+		// return typeof req === 'string' ? req : `${req.method}${req.originalUrl}${user && user.id ? user.id : ''}`;
+		return typeof req === 'string' ? req : `${req.method}${req.originalUrl}`;
 	}
 }
 

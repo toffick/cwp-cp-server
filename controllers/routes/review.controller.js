@@ -1,8 +1,16 @@
 const CrudController = require('./crud.controller');
 const sender = require('../../helpers/sender.helper');
 
+
 class ReviewController extends CrudController {
-    constructor({reviewService, cacheService}) {
+
+
+	/**
+	 *
+ 	 * @param {ReviewService} reviewService
+	 * @param {CacheService} cacheService
+	 */
+	constructor({reviewService, cacheService}) {
         super(reviewService, 'review', cacheService);
 
         this.registerRoutes();
@@ -17,7 +25,9 @@ class ReviewController extends CrudController {
 	 * @apiParam {Object} review object
 	 */
     async create(req, res) {
-        sender(res, await this.service.create(req.body, req.user.id))
+        sender(res, await this.service.create(req.body, req.user.id));
+		const reviewKey = `GET/api/v1/movies/${req.body.movieId}`;
+		await this.cacheService.del(reviewKey);
     }
 }
 

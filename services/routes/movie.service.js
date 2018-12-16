@@ -96,6 +96,43 @@ class MovieService extends CrudService {
 
 	}
 
+	async create(data) {
+
+		this._validateBySchema(data);
+
+		const {actors, genres} = data;
+
+		const actorsArray = actors.split(',').filter((actorId) => !isNaN(actorId)).map((item) => item.trim());
+		const genresArray = genres.split(',').filter((actorId) => !isNaN(actorId)).map((item) => item.trim());
+
+		const normalizedActorsArray = [...new Set(actorsArray)];
+		const normalizedGenresArray = [...new Set(genresArray)];
+
+		const item = await this.repository.create(data);
+
+		await Promise.all(normalizedActorsArray.map(async (actorId) => {
+			const actor = await this.actorsRepository.findOne({where: {id: actorId}});
+
+			if (!actor) {
+				return;
+			}
+
+			return item.addActor(actorId)
+		}));
+
+		await Promise.all(normalizedGenresArray.map(async (genreId) => {
+			const genre = await this.actorsRepository.findOne({where: {id: genreId}});
+
+			if (!genre) {
+				return;
+			}
+
+			return item.addGenre(genreId)
+		}));
+
+		return item.get({plain: true});
+	}
+
 }
 
 module.exports = MovieService;

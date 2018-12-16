@@ -2,6 +2,13 @@ const validator = require('../../helpers/validator.helper');
 const sqs = require('sequelize-querystring');
 
 class CrudService {
+
+	/**
+	 *
+	 * @param repository
+	 * @param schema
+	 * @param errors
+	 */
 	constructor(repository, schema, errors) {
 		this.repository = repository;
 		this.errors = errors;

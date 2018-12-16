@@ -23,5 +23,23 @@
         "freezeTableName": true
       }
     }
+  },
+  "db_audit": {
+    "name": "db5uofdk23anq5",
+    "user": "eijgwctubazlbg",
+    "password": "5cbdf9fbdeb1a16b574fd7e22a91e65ec45cd509cf81f3c90e1c8ce999edd3ef",
+    "options": {
+      "dialect": "postgres",
+      "host": "ec2-54-204-21-226.compute-1.amazonaws.com",
+      "port": 5432,
+      "timestamps": false,
+      "paranoid": false,
+      "freezeTableName": true,
+      "logging": true,
+      "define": {
+        "paranoid": false,
+        "freezeTableName": true
+      }
+    }
   }
 }

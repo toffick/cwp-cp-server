@@ -53,7 +53,18 @@ module.exports = ({authenticatorService, logger, errors}) => {
 	 * @apiGroup CheckAuth
 	 */
 	router.post('/check-auth', (req, res) => {
-		res.json({success: req.isAuthenticated(), user: req.user});
+		const user = req.user && req.user.get({plain: true});
+
+		if (user) {
+			delete user.password;
+			user.role = user.role.name;
+		}
+
+		res.json({
+			success: req.isAuthenticated(),
+			user,
+			// user: {...user, password: undefined, role: user.role.name}
+		});
 	});
 
 	/**
