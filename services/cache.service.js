@@ -1,10 +1,10 @@
-const lru = require('lru-cache');
+const Lru = require('lru-cache');
 const hash = require('object-hash');
 
 class CacheService {
 	constructor() {
 		//TODO
-		this.cache = lru({max: 5, maxAge: 1000 * 30});
+		this.cache = new Lru({max: 5, maxAge: 1000 * 30});
 	}
 
 	async set(req, data) {
